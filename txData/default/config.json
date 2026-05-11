@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "general": {
+    "serverName": "AthenaRP"
+  },
+  "server": {
+    "dataPath": "D:/AthenaRP/AthenaRP/txData/Qbox_01C994.base/"
+  }
+}

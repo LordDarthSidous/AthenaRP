@@ -1,0 +1,10 @@
+================================================================
+======== txAdmin v8.0.1 atop fxserver 27092 Starting - 5/11/2026, 8:18:53 AM
+================================================================
+[08:20:10][HunterX75] created admins file
+[08:20:53][HunterX75] Config changes: general.serverName
+[08:20:53][HunterX75] Changing global settings via setup stepper and started Deployer.
+[08:29:49][HunterX75] Setting recipe.
+[08:30:26][HunterX75] Running recipe.
+[08:41:56][HunterX75] Config changes: server.dataPath
+[08:41:56][HunterX75] Completed and committed server deploy.
