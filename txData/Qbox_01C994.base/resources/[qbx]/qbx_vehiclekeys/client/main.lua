@@ -87,11 +87,6 @@ lib.onCache('seat', function(newSeat)
     onEnteringDriverSeat()
 end)
 
-lib.onCache('vehicle', function(vehicle)
-    if not vehicle then return end
-    SetVehicleKeepEngineOnWhenAbandoned(vehicle, config.keepEngineOnWhenAbandoned)
-end)
-
 -----------------------
 ------ Key Binds ------
 -----------------------
@@ -288,4 +283,111 @@ AddStateBagChangeHandler('isLoggedIn', ('player:%s'):format(cache.serverId), fun
     isLoggedIn = value
     if not value then return end
     playerEnterVehLoop()
+end)
+
+-----------------------
+---- Rahe Boosting ----
+-----------------------
+
+-- Event fired by rahe-boosting when a player starts boosting a vehicle
+RegisterNetEvent('qb-vehiclekeys:client:StartBoosting', function()
+    local ped = PlayerPedId()
+    if not IsPedInAnyVehicle(ped, false) then return end
+
+    local vehicle = GetVehiclePedIsIn(ped, false)
+    local plate   = QBCore.Functions.GetPlate(vehicle)
+
+    if HasKeys(plate) then return end
+    if isBlacklistedVehicle(vehicle) then return end
+    if IsBoosting then return end
+
+    BoostVehicle(vehicle, plate)
+end)
+
+-- Triggered by rahe-boosting export so other scripts can initiate a boost
+AddEventHandler('rahe-boosting:client:boostVehicle', function()
+    local ped = PlayerPedId()
+    if not IsPedInAnyVehicle(ped, false) then return end
+
+    local vehicle = GetVehiclePedIsIn(ped, false)
+    local plate   = QBCore.Functions.GetPlate(vehicle)
+
+    if HasKeys(plate) then return end
+    if isBlacklistedVehicle(vehicle) then return end
+    if IsBoosting then return end
+
+    BoostVehicle(vehicle, plate)
+end)
+
+function BoostVehicle(vehicle, plate)
+    if IsBoosting then return end
+    IsBoosting = true
+
+    local ped         = PlayerPedId()
+    local boostTime   = math.random(Config.minHotwireTime, Config.maxHotwireTime)
+
+    SetVehicleAlarm(vehicle, true)
+    SetVehicleAlarmTimeLeft(vehicle, boostTime)
+
+    QBCore.Functions.Progressbar('boost_vehicle', Lang:t('progress.hskeys'), boostTime, false, true, {
+        disableMovement  = true,
+        disableCarMovement = true,
+        disableMouse     = false,
+        disableCombat    = true,
+    }, {
+        animDict = 'anim@amb@clubhouse@tutorial@bkr_tut_ig3@',
+        anim     = 'machinic_loop_mechandplayer',
+        flags    = 16,
+    }, {}, {}, function() -- Done
+        StopAnimTask(ped, 'anim@amb@clubhouse@tutorial@bkr_tut_ig3@', 'machinic_loop_mechandplayer', 1.0)
+        TriggerServerEvent('hud:server:GainStress', math.random(1, 4))
+
+        if math.random() <= Config.HotwireChance then
+            TriggerServerEvent('qb-vehiclekeys:server:AcquireVehicleKeys', plate)
+            -- Notify rahe-boosting that the boost succeeded
+            TriggerEvent('rahe-boosting:client:boostSuccess', plate)
+            QBCore.Functions.Notify(Lang:t('notify.vlockpick'), 'success')
+        else
+            QBCore.Functions.Notify(Lang:t('notify.fvlockpick'), 'error')
+            TriggerEvent('rahe-boosting:client:boostFailed', plate)
+        end
+
+        Wait(Config.TimeBetweenHotwires)
+        IsBoosting = false
+    end, function() -- Cancel
+        StopAnimTask(ped, 'anim@amb@clubhouse@tutorial@bkr_tut_ig3@', 'machinic_loop_mechandplayer', 1.0)
+        TriggerEvent('rahe-boosting:client:boostFailed', plate)
+        IsBoosting = false
+    end)
+
+    SetTimeout(10000, function()
+        AttemptPoliceAlert('steal')
+    end)
+end
+
+exports('BoostVehicle', BoostVehicle)
+
+
+RegisterNUICallback('closui', function()
+    SetNuiFocus(false, false)
+end)
+
+RegisterNUICallback('unlock', function()
+    ToggleVehicleunLocks(GetVehicle())
+    SetNuiFocus(false, false)
+end)
+
+RegisterNUICallback('lock', function()
+    ToggleVehicleLocks(GetVehicle())
+    SetNuiFocus(false, false)
+end)
+
+RegisterNUICallback('trunk', function()
+    ToggleVehicleTrunk(GetVehicle())
+    SetNuiFocus(false, false)
+end)
+
+RegisterNUICallback('engine', function()
+    ToggleEngine(GetVehicle())
+    SetNuiFocus(false, false)
 end)

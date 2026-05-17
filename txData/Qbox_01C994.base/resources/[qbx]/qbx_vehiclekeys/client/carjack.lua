@@ -125,16 +125,13 @@ local function watchCarjackingAttempts()
                 and not IsEntityDead(target)
                 and not IsPedAPlayer(target)
             then
-                local script = GetEntityScript(target)
-                if not script then
-                    local targetveh = GetVehiclePedIsIn(target, false)
+                local targetveh = GetVehiclePedIsIn(target, false)
 
-                    if GetPedInVehicleSeat(targetveh, -1) == target
-                        and not GetVehicleConfig(targetveh).carjackingImmune
-                        and #(GetEntityCoords(cache.ped) - GetEntityCoords(target)) < 5.0
-                    then
-                        carjackVehicle(target, targetveh)
-                    end
+                if GetPedInVehicleSeat(targetveh, -1) == target
+                    and not GetVehicleConfig(targetveh).carjackingImmune
+                    and #(GetEntityCoords(cache.ped) - GetEntityCoords(target)) < 5.0
+                then
+                    carjackVehicle(target, targetveh)
                 end
             end
             Wait(100)

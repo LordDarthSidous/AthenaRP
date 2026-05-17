@@ -1,17 +1,14 @@
-local config = require 'config.server'
-
 ---@param src number
 ---@return number?
 local function getClosestPlayer(src)
     local playerCoords = GetEntityCoords(GetPlayerPed(src))
-    local nearbyPlayers = lib.getNearbyPlayers(playerCoords, config.distanceToHandKeys)
-    local closestPlayer
-    local closestDistance = config.distanceToHandKeys
+    local nearbyPlayers = lib.getNearbyPlayers(playerCoords, 3)
+    local closestPlayer, closestDistance
     for i = 1, #nearbyPlayers do
         local nearbyPlayer = nearbyPlayers[i]
-        if nearbyPlayer.id ~= src then
+        if nearbyPlayer.id ~= source then
             local distance = #(nearbyPlayer.coords - playerCoords)
-            if not distance or distance <= closestDistance then
+            if not distance or distance < closestDistance then
                 closestPlayer = nearbyPlayer
                 closestDistance = distance
             end
@@ -38,25 +35,19 @@ local function transferKeys(source, target, enforceSrcHasKeys)
     if target and type(target) == 'number' then
         GiveKeys(target, vehicle)
     elseif GetVehiclePedIsIn(playerPed, false) == vehicle then -- Give keys to everyone in vehicle
-        local givenKeys = false
         for i = -1, 7 do
             local ped = GetPedInVehicleSeat(vehicle, i)
             local serverId = ped and NetworkGetEntityOwner(ped)
-            if serverId and serverId ~= 0 and serverId ~= source then
+            if serverId and serverId ~= source then
                 GiveKeys(serverId, vehicle)
-                givenKeys = true
             end
         end
-        
-        if not givenKeys then return end
+
         exports.qbx_core:Notify(source, locale('notify.gave_keys'))
     else -- Give keys to closest player
         local closestPlayer = getClosestPlayer(source)
         if closestPlayer then
             GiveKeys(closestPlayer, vehicle)
-            exports.qbx_core:Notify(source, locale('notify.gave_keys'))
-        else
-            exports.qbx_core:Notify(source, locale('notify.not_near'), 'error')
         end
     end
 end
@@ -88,7 +79,6 @@ lib.addCommand(locale('addcom.addkeys'), {
     },
     restricted = 'group.admin',
 }, function (source, args)
-    if not exports.qbx_core:IsOptin(source) then exports.qbx_core:Notify(source, locale('error.not_optin'), 'error') return end
     local playerId = args[locale('addcom.addkeys_id')]
     transferKeys(source, playerId, false)
 end)
