@@ -56,7 +56,6 @@ exports('setContainerProperties', setContainerProperties)
 setContainerProperties('paperbag', {
 	slots = 5,
 	maxWeight = 1000,
-	blacklist = { 'testburger' }
 })
 
 setContainerProperties('pizzabox', {
@@ -64,5 +63,37 @@ setContainerProperties('pizzabox', {
 	maxWeight = 1000,
 	whitelist = { 'pizza' }
 })
+
+setContainerProperties('wallet', {
+	slots = 5,
+	maxWeight = 1500,
+	whitelist = { 'idcard', 'money', 'black_money', 'driver_license', 'weaponlicense'}
+})
+
+setContainerProperties('box_small', {
+	slots = 5,
+	maxWeight = 7500,
+})
+
+setContainerProperties('giftbox_red', {
+	slots = 5,
+	maxWeight = 3000,
+})
+
+setContainerProperties('postal_box', {
+	slots = 5,
+	maxWeight = 3000,
+})
+
+setContainerProperties('gun_case', {
+	slots = 5,
+	maxWeight = 3000,
+})
+
+setContainerProperties('brief_case', {
+	slots = 5,
+	maxWeight = 3000,
+})
+
 
 return containers

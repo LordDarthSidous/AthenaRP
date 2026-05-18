@@ -1,0 +1,70 @@
+{
+    "common": {
+        "cancel": "Annulla",
+        "confirm": "Conferma",
+        "submit": "Invia",
+        "close": "Chiudi"
+    },
+    "alert": {
+        "header": "Avviso",
+        "content": "Sei sicuro?"
+    },
+    "input": {
+        "title": "Finestra di input",
+        "selectOption": "Seleziona un'opzione",
+        "selectOptions": "Seleziona opzioni",
+        "searchPlaceholder": "Cerca...",
+        "noOptionsFound": "Nessuna opzione trovata",
+        "toggleOn": "Acceso",
+        "toggleOff": "Spento",
+        "selectDate": "Seleziona data...",
+        "selectDates": "Seleziona date...",
+        "validation": {
+            "required": "%s è richiesto",
+            "minLength": "%s deve avere almeno %s caratteri",
+            "maxLength": "%s non deve avere più di %s caratteri",
+            "minValue": "%s deve essere almeno %s",
+            "maxValue": "%s non deve essere più di %s",
+            "maxSelections": "%s non deve avere più di %s selezione%s"
+        }
+    },
+    "menu": {
+        "close": "Premi %s per chiudere",
+        "select": "Per favore seleziona un'opzione"
+    },
+    "progressbar": {
+        "title": "Progresso",
+        "cancel": "Premi %s per annullare"
+    },
+    "skillcheck": {
+        "title": "Test di abilità",
+        "instructions": "Istruzioni",
+        "instructionText": "Premi %s quando %s colpisce %s",
+        "redLine": "linea rossa",
+        "greenZone": "zona verde",
+        "hint": "Il tempismo è tutto..."
+    },
+    "signalbreach": {
+        "title": "Violazione del Segnale",
+        "stabilizer": "Stabilizzatore del Segnale",
+        "difficulty": {
+            "easy": "facile",
+            "medium": "medio",
+            "hard": "difficile",
+            "custom": "personalizzato"
+        },
+        "status": {
+            "inRange": "In zona",
+            "searching": "Ricerca...",
+            "nodeSecured": "Nodo protetto",
+            "accessGranted": "Accesso consentito",
+            "breachDetected": "Violazione rilevata"
+        },
+        "prompt": {
+            "press": "Premi",
+            "inWindow": "nella finestra",
+            "nodeLocked": "Nodo bloccato - reindirizzamento del segnale...",
+            "intrusionDetected": "Intrusione rilevata"
+        }
+    }
+}

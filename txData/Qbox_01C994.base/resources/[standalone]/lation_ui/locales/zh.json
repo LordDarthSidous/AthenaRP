@@ -1,0 +1,70 @@
+{
+    "common": {
+        "cancel": "取消",
+        "confirm": "确认",
+        "submit": "提交",
+        "close": "关闭"
+    },
+    "alert": {
+        "header": "警告",
+        "content": "您确定吗？"
+    },
+    "input": {
+        "title": "输入对话框",
+        "selectOption": "选择一个选项",
+        "selectOptions": "选择选项",
+        "searchPlaceholder": "搜索...",
+        "noOptionsFound": "未找到选项",
+        "toggleOn": "开启",
+        "toggleOff": "关闭",
+        "selectDate": "选择日期...",
+        "selectDates": "选择日期...",
+        "validation": {
+            "required": "%s 是必需的",
+            "minLength": "%s 必须至少 %s 个字符",
+            "maxLength": "%s 不能超过 %s 个字符",
+            "minValue": "%s 必须至少 %s",
+            "maxValue": "%s 不能超过 %s",
+            "maxSelections": "%s 不能超过 %s 个选择%s"
+        }
+    },
+    "menu": {
+        "close": "按 %s 关闭",
+        "select": "请选择一个选项"
+    },
+    "progressbar": {
+        "title": "进度",
+        "cancel": "按 %s 取消"
+    },
+    "skillcheck": {
+        "title": "技能检查",
+        "instructions": "说明",
+        "instructionText": "当 %s 击中 %s 时按 %s",
+        "redLine": "红线",
+        "greenZone": "绿色区域",
+        "hint": "时机就是一切..."
+    },
+    "signalbreach": {
+        "title": "信号入侵",
+        "stabilizer": "信号稳定器",
+        "difficulty": {
+            "easy": "简单",
+            "medium": "中等",
+            "hard": "困难",
+            "custom": "自定义"
+        },
+        "status": {
+            "inRange": "在范围内",
+            "searching": "搜索中...",
+            "nodeSecured": "节点已锁定",
+            "accessGranted": "访问已授予",
+            "breachDetected": "检测到入侵"
+        },
+        "prompt": {
+            "press": "按下",
+            "inWindow": "在窗口内",
+            "nodeLocked": "节点已锁定 - 正在重定向信号...",
+            "intrusionDetected": "检测到入侵"
+        }
+    }
+}

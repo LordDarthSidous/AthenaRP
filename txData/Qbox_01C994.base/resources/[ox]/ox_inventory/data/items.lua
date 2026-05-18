@@ -1,636 +1,831 @@
 return {
-    ['testburger'] = {
-        label = 'Test Burger',
-        weight = 220,
-        degrade = 60,
-        client = {
-            image = 'burger_chicken.png',
-            status = { hunger = 200000 },
-            anim = 'eating',
-            prop = 'burger',
-            usetime = 2500,
-            export = 'ox_inventory_examples.testburger'
-        },
-        server = {
-            export = 'ox_inventory_examples.testburger',
-            test = 'what an amazingly delicious burger, amirite?'
-        },
-        buttons = {
-            {
-                label = 'Lick it',
-                action = function(slot)
-                    print('You licked the burger')
-                end
-            },
-            {
-                label = 'Squeeze it',
-                action = function(slot)
-                    print('You squeezed the burger :(')
-                end
-            },
-            {
-                label = 'What do you call a vegan burger?',
-                group = 'Hamburger Puns',
-                action = function(slot)
-                    print('A misteak.')
-                end
-            },
-            {
-                label = 'What do frogs like to eat with their hamburgers?',
-                group = 'Hamburger Puns',
-                action = function(slot)
-                    print('French flies.')
-                end
-            },
-            {
-                label = 'Why were the burger and fries running?',
-                group = 'Hamburger Puns',
-                action = function(slot)
-                    print('Because they\'re fast food.')
-                end
-            }
-        },
-        consume = 0.3
-    },
+    ---- Money And Card Items ----
+   ['money'] = { label = 'Money' },
+   ['black_money'] = { label = 'Dirty Money' },
+   ['id_card'] = { label = 'Identification Card' },
+   ['driver_license'] = { label = 'Drivers License' },
+   ['weaponlicense'] = { label = 'Weapon License' },
+   ['lawyerpass'] = { label = 'Lawyer Pass' },
+   ['security_card_01'] = { label = 'Security Card A', weight = 100, stack = true, close = true },
+   ['security_card_02'] = { label = 'Security Card B', weight = 100, stack = true, close = true },
+   ['storage_key'] = { label = 'Storage Key', weight = 100, stack = true, close = true, description = 'Storage Unit key' },
+
+   -----# Containers #-----
+   ['wallet'] = { label = 'Wallet', weight = 100, stack = true, close = true, },
+   ['box_small'] = { label = 'Small Box', weight = 100, stack = true, close = true, },
+   ['giftbox_red'] = { label = 'Red Gift Box', weight = 100, stack = true, close = true, },
+   ['postal_box'] = { label = 'Go Postal', weight = 100, stack = true, close = true, },
+   ['gun_case'] = { label = 'Gun Case', weight = 100, stack = true, close = true, },
+   ['brief_case'] = { label = 'Brief Case', weight = 100, stack = true, close = true, },
+
+   ----- # Ammo Cases # -----
+   ['box_38'] = { label = 'Case of 38', weight = 500, stack = false, close = false },
+   ['box_44'] = { label = 'Case of 44mag', weight = 500, stack = false, close = false },
+   ['box_45'] = { label = 'Case of 45', weight = 500, stack = false, close = false },
+   ['box_50'] = { label = 'Case of 50', weight = 500, stack = false, close = false },
+   ['box_9'] = { label = 'Case of 9mm', weight = 500, stack = false, close = false },
+   ['box_50heavy'] = { label = 'Case of 50cal HD', weight = 500, stack = false, close = false },
+   ['box_556'] = { label = 'Case of 556', weight = 500, stack = false, close = false },
+   ['box_762'] = { label = 'Case of 762', weight = 500, stack = false, close = false },
+   ['box_shotgun'] = { label = 'Case of Shotgun', weight = 500, stack = false, close = false },
+   ['box_50snp'] = { label = 'Case of 50snp', weight = 500, stack = false, close = false },
+
+   -----# Pug Repo #----
+   ['towremote'] = { label = 'Tow Remote', weight = 100, },
+   ['reponote'] = { label = 'Tow Note', weight = 100, },
+
+   ['trackeritem'] = { label = 'Tracker Disabler', weight = 160, stack = true, close = true },
+   ['chop_wheel'] = { label = 'Car Wheel', weight = 400, stack = true, close = true },
+   ['chop_door'] = { label = 'Car Door', weight = 400, stack = true, close = true },
+   ['chop_hood'] = { label = 'Car Hood', weight = 400, stack = true, close = true },
+   ['chop_trunk'] = { label = 'Car Trunk', weight = 400, stack = true, close = true },
+   
+   -----# Pug Robbery Creator #-----
+   ['gasmask'] = { label = 'Gas Mask', weight = 100, stack = true, close = true, description = 'Useful to avoid dying in gas', client = { image = 'gas_mask.png' } },
+   ['ropehook'] = { label = 'Rope Hook', weight = 100, stack = true, close = true, description = 'A long rope with a hook on it.', client = { image = 'rope-hook.png' } },
+   ['paintingart'] = { label = 'Art Painting', weight = 500, stack = true, close = true, description = 'A stunning piece of modern art.', client = { image = 'painting-art.png' } },
+   ['paintingcity'] = { label = 'City Painting', weight = 500, stack = true, close = true, description = 'A depiction of a bustling city square.', client = { image = 'painting-city.png' } },
+   ['paintingclown'] = { label = 'Clown Painting', weight = 500, stack = true, close = true, description = 'A colorful and eerie clown portrait.', client = { image = 'painting-clown.png' } },
+   ['paintingfamily'] = { label = 'Family Painting', weight = 500, stack = true, close = true, description = 'A nostalgic painting of a family gathering.', client = { image = 'painting-family.png' } },
+   ['paintingguys'] = { label = 'Guys Painting', weight = 500, stack = true, close = true, description = 'A painting of two gentlemen in conversation.', client = { image = 'painting-guys.png' } },
+   ['paintinglady'] = { label = 'Lady Painting', weight = 500, stack = true, close = true, description = 'An elegant portrait of a lady.', client = { image = 'painting-lady.png' } },
+   ['paintingnative'] = { label = 'Native Painting', weight = 500, stack = true, close = true, description = 'A painting of a native figure holding a mask.', client = { image = 'painting-native.png' } },
+   ['paintingpaddle'] = { label = 'Paddle Painting', weight = 500, stack = true, close = true, description = 'A playful painting featuring balloons and paddles.', client = { image = 'painting-paddle.png' } },
+   ['paintingpig'] = { label = 'Pig Painting', weight = 500, stack = true, close = true, description = 'Looks like an expensive pig?', client = { image = 'painting-pig.png' } },
+   ['paintingrocket'] = { label = 'Rocket Painting', weight = 500, stack = true, close = true, description = 'An abstract painting of a rocket.', client = { image = 'painting-rocket.png' } },
+   ['diamondnecklace'] = { label = 'Diamond Necklace', weight = 50, stack = true, close = true, description = 'A beautiful diamond necklace', client = { image = 'diamondnecklace.png' } },
+   ['diamondring'] = { label = 'Diamond Ring', weight = 20, stack = true, close = true, description = 'A shiny diamond ring', client = { image = 'diamondring.png' } },
+   ['goldbarstack'] = { label = 'Gold Bar Stack', weight = 200, stack = true, close = true, description = 'A stack of gold bars', client = { image = 'goldbarstack.png' } },
+   ['goldbracelet'] = { label = 'Gold Bracelet', weight = 30, stack = true, close = true, description = 'A heavy gold bracelet', client = { image = 'goldbracelet.png' } },
+   ['goldwatch'] = { label = 'Gold Watch', weight = 40, stack = true, close = true, description = 'An expensive gold watch', client = { image = 'goldwatch.png' } },
+   ['purpleusb'] = { label = 'Purple USB', weight = 10, stack = true, close = true, description = 'A mysterious purple USB drive', client = { image = 'purpleusb.png' } },
+   ['salvagedlockpick'] = { label = 'Salvaged Lockpick', weight = 5, stack = true, close = true, description = 'A worn-out salvaged lockpick', client = { image = 'salvagedlockpick.png' } },
+   ['silverring'] = { label = 'Silver Ring', weight = 15, stack = true, close = true, description = 'A delicate silver ring', client = { image = 'silverring.png' } },
+   ['unmarkedsimcard'] = { label = 'Unmarked SIM Card', weight = 5, stack = true, close = true, description = 'An unmarked SIM card, could be useful for something', client = { image = 'unmarkedsimcard.png' } },
+   ['bandsofnotes'] = { label = 'Bands of Notes', weight = 10, stack = true, close = true, description = 'A bundle of high-value notes, could be valuable.', client = { image = 'bandsofnotes.png' } },
+   ['bankcard'] = { label = 'Bank Card', weight = 5, stack = true, close = true, description = 'A standard bank card for transactions.', client = { image = 'bankcard.png' } },
+   ['group6card'] = { label = 'Group 6 Security Card', weight = 5, stack = true, close = true, description = 'A Group 6 security card granting access to restricted areas.', client = { image = 'group6card.png' } },
+   ['humaneco2'] = { label = 'Compound X2', weight = 5, stack = true, close = true, description = 'A Compound X2, potentially useful for specific tasks.', client = { image = 'humaneco2.png' } },
+   ['paletobankcard'] = { label = 'Paleto Bank Card', weight = 5, stack = true, close = true, description = 'An ID card for Paleto Bank employees.', client = { image = 'paletobankcard.png' } },
+   ['rubynecklace'] = { label = 'Ruby Necklace', weight = 3, stack = true, close = true, description = 'A valuable ruby necklace.', client = { image = 'rubynecklace.png' } },
+   ['stacksofcash'] = { label = 'Stacks of Cash', weight = 15, stack = true, close = true, description = 'A large stack of cash.', client = { image = 'stacksofcash.png' } },
+   --['thermite'] = { label = 'Thermite', weight = 5, stack = true, close = true, description = 'An explosive thermite device, useful for breaking through strong barriers.', client = { image = 'thermite.png' } },
+   ['handsaw'] = { label = 'Hand Saw', weight = 3, stack = true, close = true, description = 'A basic hand saw, useful for cutting wood and other materials.', client = { image = 'handsaw.png' } },
+   ['harddrive'] = { label = 'Hard Drive', weight = 1, stack = true, close = false, description = 'An internal hard drive, useful for storing data.', client = { image = 'harddrive.png' } },
+   ['silverbar'] = { label = 'Silver Bar', weight = 5, stack = true, close = false, description = 'A bar of pure silver, valuable for trading and crafting.', client = { image = 'silverbar.png' } },
+   ['wirecutters'] = { label = 'Wire Cutters', weight = 2, stack = true, close = true, description = 'A tool for cutting wires, essential for various tasks.', client = { image = 'wirecutters.png' } },
+   ['pincracker'] = { label = 'Pin Cracker', weight = 1, stack = true, close = true, description = 'A tool used for cracking pin-based locks, essential for skilled lockpickers.', client = { image = 'pincracker.png' } },
+   ['bigbankcard'] = { label = 'Big Bank Card', weight = 5, stack = true, close = true, description = 'A bank card that provides access to bank services.', client = { image = 'bigbankcard.png' } },
+   ['c4'] = { label = 'C4 Explosive', weight = 10, stack = true, close = true, description = 'A powerful explosive device, useful for breaching strong barriers.', client = { image = 'c4.png' } },
+   ['humaneusb'] = { label = 'Humane Labs USB', weight = 1, stack = true, close = true, description = 'A USB stick containing sensitive data, property of Humane Labs.', client = { image = 'humaneusb.png' } },
+   ['bankidcard'] = { label = 'Bank ID Card', weight = 1, stack = true, close = true, description = 'An ID card for bank employees, granting access to certain areas.', client = { image = 'bankidcard.png' } },
+
+   ----- Food Items -----
+   ['mustard'] = { label = 'Mustard', weight = 500, stack = true, close = true, client = { status = { hunger = 25000, thirst = 25000 }, anim = { dict = 'mp_player_intdrink', clip = 'loop_bottle' }, prop = { model = `prop_food_mustard`, pos = vec3(0.01, 0.0, -0.07), rot = vec3(1.0, 1.0, -1.5) }, usetime = 2500, notification = 'You... drank mustard' } },
+   ['grape'] = { label = 'Grape', weight = 10, stack = true, close = true },
+
+   ['apple'] = { label = 'Apple', weight = 100, stack = true, close = true, description = "A crisp, sweet fruit that's perfect for a quick, healthy snack." },
+   ['orange'] = { label = 'Orange', weight = 100, stack = true, close = true, description = "A juicy citrus fruit packed with vitamin C and a refreshing taste." },
+   ['pineapple'] = { label = 'Pineapple', weight = 120, stack = true, close = true, description = "A tropical fruit known for its vibrant flavor and spiky exterior." },
+   ['tomato'] = { label = 'Tomato', weight = 100, stack = true, close = true, description = "A versatile fruit often used in cooking for its rich, savory flavor." },
+   ['strawberry'] = { label = 'Strawberry', weight = 100, stack = true, close = true, description = "A sweet, juicy berry with a bright red color and refreshing taste." },
+   ['potato'] = { label = 'Potato', weight = 80, stack = true, close = true, description = "A versatile root vegetable perfect for many dishes." },
+   ['pumpkin'] = { label = 'Pumpkin', weight = 80, stack = true, close = true, description = "A hearty squash often used in soups, pies, and festive autumn dishes." },
+   --------------------------------------------------------
+   ['burger'] = { label = 'Hamburger', weight = 220, stack = false, close = true, client = { export = 'devcore_needs.useConsumeItem' } },
+   ['sandwich'] = { label = 'Sandwich', weight = 200, stack = true, close = true, client = { export = 'devcore_needs.useConsumeItem' } },
+   ['tosti'] = { label = 'Tosti', weight = 220, stack = true, close = true, client = { export = 'devcore_needs.useConsumeItem' } },
+   ['hotdog'] = { label = 'Hotdog', weight = 180, stack = false, close = true, client = { export = 'devcore_needs.useConsumeItem' } },
+   ['taco'] = { label = 'Taco', weight = 160, stack = false, close = true, client = { export = 'devcore_needs.useConsumeItem' } },
+   ---------------------------------------------------------   
+   ['chaser'] = { label = 'Chaser Choco Bar', weight = 150, stack = false, close = true, client = { export = 'devcore_needs.useConsumeItem' } },
+   ['twerks_candy'] = { label = 'Twerks Candy', weight = 220, stack = true, close = true, client = { export = 'devcore_needs.useConsumeItem' } },
+   ['snikkel_candy'] = { label = 'Snikkel Candy', weight = 220, stack = true, close = true, client = { export = 'devcore_needs.useConsumeItem' } },
+   ['meteorite'] = { label = 'Meteorite Choco Bar', weight = 150, stack = false, close = true, client = { export = 'devcore_needs.useConsumeItem' } },
+   ['raine'] = { label = 'Raine Water', weight = 500, stack = false, close = true, client = { export = 'devcore_needs.useConsumeItem' } },
+   ['energy_drink'] = { label = 'Energy drink', weight = 330, stack = false, close = true, client = { export = 'devcore_needs.useConsumeItem' } },
+   ['coffee'] = { label = 'Coffee', weight = 250, stack = false, close = true, client = { export = 'devcore_needs.useConsumeItem' } },
+   ['cola'] = { label = 'Cola', weight = 330, stack = false, close = true, client = { export = 'devcore_needs.useConsumeItem' } },
+   ['sprunk'] = { label = 'Sprunk', weight = 330, stack = false, close = true, client = { export = 'devcore_needs.useConsumeItem' } },
+   ['water'] = { label = 'Water', weight = 500, stack = true, close = true, client = { export = 'devcore_needs.useConsumeItem' } },
+   ['grapejuice'] = { label = 'Grape Juice', weight = 200, stack = true, close = true, client = { export = 'devcore_needs.useConsumeItem' } },
+   ---------------------------------------------------------
+   ['piswasser'] = { label = 'Pißwasser', weight = 330, stack = false, close = true, client = { export = 'devcore_needs.useConsumeItem' } },
+   ['mount_whiskey'] = { label = 'The Mount Whiskey', weight = 700, stack = false, close = true, client = { export = 'devcore_needs.useConsumeItem' } },
+   ['tequila'] = { label = 'Tequilya', weight = 700, stack = false, close = true, client = { export = 'devcore_needs.useConsumeItem' } },
+   ['nogo_vodka'] = { label = 'Nogo Vodka', weight = 700, stack = false, close = true, client = { export = 'devcore_needs.useConsumeItem' } },
+   ['costa_del_perro'] = { label = 'Costa Del Perro', weight = 700, stack = false, close = true, client = { export = 'devcore_needs.useConsumeItem' } },
+   ['rockford_hill'] = { label = 'Rockford Hill Reserve', weight = 700, stack = false, close = true, client = { export = 'devcore_needs.useConsumeItem' } },
+   ['vinewood_red'] = { label = 'Vinewood Red Zinfadel', weight = 700, stack = false, close = true, client = { export = 'devcore_needs.useConsumeItem' } },
+   ['vinewood_blanc'] = { label = 'Vinewood Sauvignon Blanc', weight = 700, stack = false, close = true, client = { export = 'devcore_needs.useConsumeItem' } },
+   ['bleuterd'] = { label = 'Bleuterd Champagne', weight = 700, stack = false, close = true, client = { export = 'devcore_needs.useConsumeItem' } },
+   ['shot_glass'] = { label = 'Glass for shot', weight = 50, stack = false, close = true, client = { export = 'devcore_needs.useConsumeItem' } },
+   ['wine_glass'] = { label = 'Glass for wine', weight = 100, stack = false, close = true, client = { export = 'devcore_needs.useConsumeItem' } },
+   ['flute_glass'] = { label = 'Glass for champagne', weight = 100, stack = false, close = true, client = { export = 'devcore_needs.useConsumeItem' } },
+   ['whiskey_glass'] = { label = 'Glass for whiskey', weight = 100, stack = false, close = true, client = { export = 'devcore_needs.useConsumeItem' } },   
+
+   ----- Crafting Items -----
+   ['steel'] = { label = 'Steel', weight = 100, stack = true, close = true },
+   ['rubber'] = { label = 'Rubber', weight = 100, stack = true, close = true },
+   ['metalscrap'] = { label = 'Metal Scrap', weight = 100, stack = true, close = true },
+   ['iron'] = { label = 'Iron', weight = 100, stack = true, close = true },
+   ['copper'] = { label = 'Copper', weight = 100, stack = true, close = true },
+   ['aluminum'] = { label = 'Aluminium', weight = 100, stack = true, close = true },
+   ['plastic'] = { label = 'Plastic', weight = 100, stack = true, close = true },
+   ['glass'] = { label = 'Glass', weight = 100, stack = true, close = true },
+   ['wood'] = { label = 'Wood', weight = 100, stack = true, close = true },
+   ['carbon_fiber'] = { label = 'Carbon Fiber', weight = 100, stack = true, close = true },
+   
+   ----- LordDarthSidous Crafting -----
+   ['blueprint_shotgun'] = { label = 'Shotgun Blueprint', weight = 100, stack = true, close = true },
+   ['blueprint_smg'] = { label = 'SMG Blueprint', weight = 100, stack = true, close = true },
+   ['blueprint_weapon_parts'] = { label = 'Weapon parts Blueprint', weight = 100, stack = true, close = true },
+   ['blueprint_armor'] = { label = 'Armor Blueprint', weight = 100, stack = true, close = true },
+   ['blueprint_assaultrifle'] = { label = 'Assault Rife Blueprint', weight = 100, stack = true, close = true },
+   ['blueprint_pistol'] = { label = 'Pistol Blueprint', weight = 100, stack = true, close = true },
+   ['blueprint_chisel'] = { label = 'Chisel', weight = 80, stack = true,  close = false },    
+   
+   ['barrel_part'] = { label = 'Barrel Part', weight = 100, stack = true, close = true },
+   ['buttstock'] = { label = 'Butt Stock', weight = 100, stack = true, close = true },
+   ['grip'] = { label = 'Grip', weight = 100, stack = true, close = true },
+   ['clip'] = { label = 'Clip', weight = 100, stack = true, close = true },
+   ['weapon_part'] = { label = 'Weapon Part', weight = 100, stack = true, close = true },
+   ['screws'] = { label = 'Screws', weight = 100, stack = true, close = true },
+   ['weapon_oil'] = { label = 'Weapon Oil', weight = 100, stack = true, close = true },
+   ['wrench'] = { label = 'Wrench', weight = 100, stack = true, close = true },
+   ['gunpowder'] = { label = 'Gun Powder', weight = 100, stack = true, close = true },
+   
+    -----# RX Mining #-----
+    ['stone_axe'] = { label = 'Stone Axe', weight = 200, stack = false, close = true },
+    ['steel_axe'] = { label = 'Steel Axe', weight = 250, stack = false, close = true },
+    ['titanium_axe'] = { label = 'Titanium Axe', weight = 300, stack = false, close = true },
+    ['diamond_axe'] = { label = 'Diamond Axe', weight = 350, stack = false, close = true },
+    ['petrol_chainsaw'] = { label = 'Petrol Chainsaw', weight = 750, stack = false, close = true },
+    ['cordless_chainsaw'] = { label = 'Cordless Chainsaw', weight = 650, stack = false, close = true },
+    ['consaw'] = { label = 'Consaw', weight = 700, stack = false, close = true },
+    ['fuel_can'] = { label = 'Fuel Can', weight = 500, stack = true, close = true },
+    ['chainsaw_battery'] = { label = 'Chainsaw Battery', weight = 300, stack = true, close = true },
+    ['wood_scraps'] = { label = 'Wood Scraps', weight = 10, stack = true, close = true },
+    ['sawdust'] = { label = 'Sawdust', weight = 5, stack = true, close = true },
+    ['pine_log'] = { label = 'Pine Log', weight = 25, stack = true, close = true },
+    ['oak_log'] = { label = 'Oak Log', weight = 35, stack = true, close = true },
+    ['maple_log'] = { label = 'Maple Log', weight = 40, stack = true, close = true },
+    ['birch_log'] = { label = 'Birch Log', weight = 35, stack = true, close = true },
+    ['cedar_log'] = { label = 'Cedar Log', weight = 45, stack = true, close = true },
+    ['mahogany_log'] = { label = 'Mahogany Log', weight = 50, stack = true, close = true },
+    ['redwood_log'] = { label = 'Redwood Log', weight = 55, stack = true, close = true },
+    ['ancient_oak_log'] = { label = 'Ancient Oak Log', weight = 60, stack = true, close = true },
+    ['pine_plank'] = { label = 'Pine Plank', weight = 20, stack = true, close = true },
+    ['oak_plank'] = { label = 'Oak Plank', weight = 30, stack = true, close = true },
+    ['maple_plank'] = { label = 'Maple Plank', weight = 35, stack = true, close = true },
+    ['birch_plank'] = { label = 'Birch Plank', weight = 30, stack = true, close = true },
+    ['cedar_plank'] = { label = 'Cedar Plank', weight = 40, stack = true, close = true },
+    ['mahogany_plank'] = { label = 'Mahogany Plank', weight = 45, stack = true, close = true },
+    ['redwood_plank'] = { label = 'Redwood Plank', weight = 50, stack = true, close = true },
+    ['ancient_oak_plank'] = { label = 'Ancient Oak Plank', weight = 55, stack = true, close = true },
+
+    -----# RX Mining #-----
+    ['stone_pickaxe'] = { label = 'Stone Pickaxe', weight = 200, stack = false, close = true },
+    ['iron_pickaxe'] = { label = 'Iron Pickaxe', weight = 250, stack = false, close = true },
+    ['steel_pickaxe'] = { label = 'Steel Pickaxe', weight = 300, stack = false, close = true },
+    ['titanium_pickaxe'] = { label = 'Titanium Pickaxe', weight = 350, stack = false, close = true },
+    ['diamond_pickaxe'] = { label = 'Diamond Pickaxe', weight = 400, stack = false, close = true },
+    ['quantum_pickaxe'] = { label = 'Quantum Pickaxe', weight = 450, stack = false, close = true },
+    ['mining_drill'] = { label = 'Mining Drill', weight = 750, stack = false, close = true },
+    ['laser_drill'] = { label = 'Laser Drill', weight = 750, stack = false, close = true },
+    
+    ['stone'] = { label = 'Stone', weight = 10, stack = true, close = true },
+    ['coal_ore'] = { label = 'Coal Ore', weight = 25, stack = true, close = true },
+    ['copper_ore'] = { label = 'Copper Ore', weight = 35, stack = true, close = true },
+    ['iron_ore'] = { label = 'Iron Ore', weight = 45, stack = true, close = true },
+    ['silver_ore'] = { label = 'Silver Ore', weight = 45, stack = true, close = true },
+    ['gold_ore'] = { label = 'Gold Ore', weight = 55, stack = true, close = true },
+    ['platinum_ore'] = { label = 'Platinum Ore', weight = 60, stack = true, close = true },
+    ['titanium_ore'] = { label = 'Titanium Ore', weight = 70, stack = true, close = true },
+    ['uranium_ore'] = { label = 'Uranium Ore', weight = 70, stack = true, close = true },
+    ['meteorite_ore'] = { label = 'Meteorite Ore', weight = 70, stack = true, close = true },
+    ['aluminum_ore'] = { label = 'Aluminum Ore', weight = 40, stack = true, close = true },
+    
+    ['copper_ingot'] = { label = 'Copper Ingot', weight = 30, stack = true, close = true },
+    ['aluminum_ingot'] = { label = 'Aluminum Ingot', weight = 40, stack = true, close = true },    
+    ['iron_ingot'] = { label = 'Iron Ingot', weight = 40, stack = true, close = true },
+    ['silver_ingot'] = { label = 'Silver Ingot', weight = 40, stack = true, close = true },
+    ['gold_ingot'] = { label = 'Gold Ingot', weight = 50, stack = true, close = true },
+    ['platinum_ingot'] = { label = 'Platinum Ingot', weight = 55, stack = true, close = true },
+    ['titanium_ingot'] = { label = 'Titanium Ingot', weight = 60, stack = true, close = true },
+    ['uranium_ingot'] = { label = 'Uranium Ingot', weight = 70, stack = true, close = true },
+    ['meteorite_ingot'] = { label = 'Meteorite Ingot', weight = 70, stack = true, close = true },
+
+   ------- Addon for RX Mining -----
+    ['raw_diamond']      = { label = 'Raw Diamond',     weight = 10,  stack = true,  close = false },
+    ['raw_ruby']         = { label = 'Raw Ruby',        weight = 10,  stack = true,  close = false },
+    ['raw_emerald']      = { label = 'Raw Emerald',     weight = 10,  stack = true,  close = false },
+    ['raw_sapphire']     = { label = 'Raw Sapphire',    weight = 10,  stack = true,  close = false },
+    ['raw_alexandrite']  = { label = 'Raw Alexandrite',     weight = 10,  stack = true,  close = false },
+    ['raw_tanzanite']    = { label = 'Raw Tanzanite',   weight = 10,  stack = true,  close = false },
+    
+    ---- Semi-Precious ----
+    ['raw_amethyst']     = { label = 'Raw Amethyst',     weight = 10,  stack = true,  close = false },
+    ['raw_topaz']        = { label = 'Raw Topaz',        weight = 10,  stack = true,  close = false },
+    ['raw_tourmaline']   = { label = 'Raw Tourmaline',   weight = 10,  stack = true,  close = false },
+    ['raw_turquoise']    = { label = 'Raw Turquoise',    weight = 10,  stack = true,  close = false },
+    
+    ---- Cut Stones ----
+    ['cut_diamond']      = { label = 'Cut Diamond',      weight = 50,   stack = true,  close = false },
+    ['cut_ruby']         = { label = 'Cut Ruby',         weight = 50,   stack = true,  close = false },
+    ['cut_emerald']      = { label = 'Cut Emerald',      weight = 50,   stack = true,  close = false },
+    ['cut_sapphire']     = { label = 'Cut Sapphire',     weight = 50,   stack = true,  close = false },
+    ['cut_amethyst']     = { label = 'Cut Amethyst',     weight = 50,   stack = true,  close = false },
+    ['cut_topaz']        = { label = 'Cut Topaz',        weight = 50,   stack = true,  close = false },    
+    ['cut_alexandrite']  = { label = 'Cut Alexandrite',  weight = 50,   stack = true,  close = false },
+    ['cut_tanzanite']    = { label = 'Cut Tanzanite',    weight = 50,   stack = true,  close = false },
+    ['cut_tourmaline']   = { label = 'Cut Tourmaline',   weight = 50,   stack = true,  close = false },
+    ['cut_turquoise']    = { label = 'Cut Turquoise',    weight = 50,   stack = true,  close = false },
+  
+    -----# LordDarthSidous Distillery #-----
+    ['water_jug']                 = { label = 'Water',                 weight = 100,  stack = true, close = true, description = 'Clean water' },
+    ['empty_jar']                 = { label = 'Empty Jar',             weight = 100,  stack = true, close = true, description = 'An empty jar for storing moonshine' },
+    ['corn']                      = { label = 'Corn',                  weight = 100,  stack = true,  close = true },
+    ['barley']                    = { label = 'Barley',                weight = 100,  stack = true,  close = true },
+    ['sugar_cane']                = { label = 'Sugar Cane',            weight = 100,  stack = true,  close = true },
+    ['potato']                    = { label = 'Potato',                weight = 150,  stack = true,  close = true },
+    ['wheat']                     = { label = 'Wheat',                 weight = 100,  stack = true,  close = true },
+    ['blue_agave']                = { label = 'Blue Agave',            weight = 200,  stack = true,  close = true },
+    ['apple']                     = { label = 'Apple',                 weight = 80,   stack = true, close = true, description = 'Fresh apple, perfect for moonshine' },
+    ['peach']                     = { label = 'Peach',                 weight = 90,   stack = true, close = true, description = 'Juicy peach for moonshine' },
+    ['strawberry']                = { label = 'Strawberry',            weight = 40,   stack = true, close = true, description = 'Sweet strawberry for moonshine' },
+    ['blueberry']                 = { label = 'Blueberry',             weight = 30,   stack = true, close = true, description = 'Fresh blueberries for moonshine' },
+    ['grapes']                    = { label = 'Grapes',                weight = 50,   stack = true,  close = true },
+    ['yeast']                     = { label = 'Yeast',                 weight = 50,   stack = true,  close = true },
+    ['molasses']                  = { label = 'Molasses',              weight = 200,  stack = true,  close = true },
+    ['juniper_berries']           = { label = 'Juniper Berries',       weight = 30,   stack = true,  close = true },
+    ['botanicals_mix']            = { label = 'Botanicals Mix',        weight = 50,   stack = true,  close = true },
+    ['oak_wood']                  = { label = 'Oak Wood',              weight = 500,  stack = true,  close = true },
+    ['peat']                      = { label = 'Peat',                  weight = 300,  stack = true,  close = true },
+    ['hops']                      = { label = 'Hops',                  weight = 50,   stack = true, close = true, description = 'Aromatic hops for brewing' },
+    ['roasted_malt']              = { label = 'Roasted Malt',          weight = 100,  stack = true, close = true, description = 'Dark roasted malt for stouts and porters' },
+    
+    -----
+    ['charcoal_filter']           = { label = 'Charcoal Filter',           weight = 200,  stack = true,  close = true },
+    ['oak_barrel']                = { label = 'Oak Barrel',                weight = 5000, stack = true,  close = true },
+    ['sherry_barrel']             = { label = 'Sherry Barrel',             weight = 5000, stack = true,  close = true },
+    ['steel_barrel']              = { label = 'Steel Barrel',              weight = 4000, stack = true,  close = true },
+    ['charred_barrel']            = { label = 'Charred Barrel',            weight = 5000, stack = true,  close = true },
+    ['french_oak_barrel']         = { label = 'French Oak Barrel',         weight = 5500, stack = true,  close = true },
+    ['glass_bottle']              = { label = 'Glass Bottle',              weight = 100,  stack = true,  close = true },
+    ['beer_bottle']               = { label = 'Empty Beer Bottle',         weight = 100,  stack = true, close = true, description = 'An empty bottle for beer' },
+    
+    -----
+    ['fermented_corn_mash']       = { label = 'Fermented Corn Mash',       weight = 500,  stack = true,  close = true },
+    ['fermented_barley_mash']     = { label = 'Fermented Barley Mash',     weight = 500,  stack = true,  close = true },
+    ['fermented_molasses']        = { label = 'Fermented Molasses',        weight = 500,  stack = true,  close = true },
+    ['fermented_dark_molasses']   = { label = 'Fermented Dark Molasses',   weight = 500,  stack = true,  close = true },
+    ['fermented_potato_mash']     = { label = 'Fermented Potato Mash',     weight = 500,  stack = true,  close = true },
+    ['fermented_wheat_mash']      = { label = 'Fermented Wheat Mash',      weight = 500,  stack = true,  close = true },
+    ['fermented_gin_base']        = { label = 'Fermented Gin Base',        weight = 500,  stack = true,  close = true },
+    ['fermented_agave']           = { label = 'Fermented Agave',           weight = 500,  stack = true,  close = true },
+    ['fermented_premium_agave']   = { label = 'Fermented Premium Agave',   weight = 500,  stack = true,  close = true },
+    ['fermented_corn_sugar_mash'] = { label = 'Fermented Corn Sugar Mash', weight = 500,  stack = true,  close = true },
+    ['fermented_grape_wine']      = { label = 'Fermented Grape Wine',      weight = 500,  stack = true,  close = true },
+    -----
+    ['raw_bourbon']               = { label = 'Raw Bourbon',               weight = 300,  stack = true,  close = true },
+    ['raw_scotch']                = { label = 'Raw Scotch',                weight = 300,  stack = true,  close = true },
+    ['raw_white_rum']             = { label = 'Raw White Rum',             weight = 300,  stack = true,  close = true },
+    ['raw_dark_rum']              = { label = 'Raw Dark Rum',              weight = 300,  stack = true,  close = true },
+    ['raw_potato_vodka']          = { label = 'Raw Potato Vodka',          weight = 300,  stack = true,  close = true },
+    ['raw_wheat_vodka']           = { label = 'Raw Wheat Vodka',           weight = 300,  stack = true,  close = true },
+    ['raw_london_gin']            = { label = 'Raw London Gin',            weight = 300,  stack = true,  close = true },
+    ['raw_silver_tequila']        = { label = 'Raw Silver Tequila',        weight = 300,  stack = true,  close = true },
+    ['raw_anejo_tequila']         = { label = 'Raw Añejo Tequila',         weight = 300,  stack = true,  close = true },
+    ['raw_moonshine']             = { label = 'Raw Moonshine',             weight = 300,  stack = true,  close = true },
+    ['raw_brandy']                = { label = 'Raw Brandy',                weight = 300,  stack = true,  close = true },
+    -----
+    ['aged_bourbon']              = { label = 'Aged Bourbon',              weight = 300,  stack = true,  close = true },
+    ['aged_scotch']               = { label = 'Aged Scotch',               weight = 300,  stack = true,  close = true },
+    ['aged_white_rum']            = { label = 'Aged White Rum',            weight = 300,  stack = true,  close = true },
+    ['aged_dark_rum']             = { label = 'Aged Dark Rum',             weight = 300,  stack = true,  close = true },
+    ['filtered_potato_vodka']     = { label = 'Filtered Potato Vodka',     weight = 300,  stack = true,  close = true },
+    ['filtered_wheat_vodka']      = { label = 'Filtered Wheat Vodka',      weight = 300,  stack = true,  close = true },
+    ['finished_london_gin']       = { label = 'Finished London Gin',       weight = 300,  stack = true,  close = true },
+    ['rested_silver_tequila']     = { label = 'Rested Silver Tequila',     weight = 300,  stack = true,  close = true },
+    ['aged_anejo_tequila']        = { label = 'Aged Añejo Tequila',        weight = 300,  stack = true,  close = true },
+    ['clear_moonshine']           = { label = 'Clear Moonshine',           weight = 300,  stack = true,  close = true },
+    ['aged_brandy']               = { label = 'Aged Brandy',               weight = 300,  stack = true,  close = true },
+    -----
+    ['jim_jaxson_bottle']         = { label = 'Jim Jaxson Bourbon',           weight = 500,  stack = true,  close = true, description = 'A smooth bourbon whiskey' },
+    ['highland_peak_bottle']      = { label = 'Highland Peak',            weight = 500,  stack = true,  close = true, description = 'A peaty scotch whiskey' },
+    ['mariner_mark_bottle']       = { label = 'Mariners Mark',                 weight = 500,  stack = true,  close = true, description = 'A clear white rum' },
+    ['oldcoast_darkrum_bottle']   = { label = 'Old Coast',                  weight = 500,  stack = true,  close = true, description = 'A rich dark rum' },
+    ['polar_peak_bottle']         = { label = 'Polar Peak',              weight = 500,  stack = true,  close = true, description = 'A smooth potato vodka' },
+    ['grain_harvest_bottle']      = { label = 'Grain Harvest',               weight = 500,  stack = true,  close = true, description = 'A premium wheat vodka' },
+    ['distillers_pride_bottle']   = { label = 'Distillers Pride',            weight = 500,  stack = true,  close = true, description = 'A classic London dry gin' },
+    ['agave_peak_bottle']         = { label = 'Agave Peak',            weight = 500,  stack = true,  close = true, description = 'A crisp silver tequila' },
+    ['cruz_anueja_bottle']        = { label = 'Añejo Tequila',             weight = 500,  stack = true,  close = true, description = 'A aged añejo tequila' },
+    ['grand_reserve_bottle']      = { label = 'Grand Reserve Brandy',              weight = 500,  stack = true,  close = true, description = 'A fine grape brandy' },    
+    -----
+    ['box_jim_jaxson'] = { label = 'Case of Jim Jaxson Bourbon', weight = 1000, stack = false, close = false },
+    ['box_highland_peak'] = { label = 'Case of Highland Peak', weight = 1000, stack = false, close = false },
+    ['box_mariner_mark'] = { label = 'Case of Mariners Mark', weight = 1000, stack = false, close = false },
+    ['box_oldcoast_darkrum'] = { label = 'Case of Old Coast', weight = 1000, stack = false, close = false },
+    ['box_polar_peak'] = { label = 'Case of Polar Peak', weight = 1000, stack = false, close = false },
+    ['box_grain_harvest'] = { label = 'Case of Grain Harvest', weight = 1000, stack = false, close = false },
+    ['box_distillers_pride'] = { label = 'Case of Distillers Pride', weight = 1000, stack = false, close = false },
+    ['box_agave_peak'] = { label = 'Case of Agave Peak', weight = 1000, stack = false, close = false },
+    ['box_cruz_anueja'] = { label = 'Case of Añejo Tequila', weight = 1000, stack = false, close = false },
+    ['box_grand_reserve'] = { label = 'Case of Grand Reserve Brandy', weight = 1000, stack = false, close = false },
+
+    -----# LordDarthSidous Brewery #-----    
+    ['pale_ale_barrel']   = { label = 'Pale Ale Wort',      weight = 5000, stack = true, close = true, description = 'Unfermented pale ale wort, needs fermentation' },
+    ['ipa_barrel']        = { label = 'IPA Wort',           weight = 5000, stack = true, close = true, description = 'Unfermented IPA wort, needs fermentation' },
+    ['stout_barrel']      = { label = 'Stout Wort',         weight = 5000, stack = true, close = true, description = 'Unfermented stout wort, needs fermentation' },
+    ['wheat_beer_barrel'] = { label = 'Wheat Beer Wort',    weight = 5000, stack = true, close = true, description = 'Unfermented wheat beer wort, needs fermentation' },
+    ['lager_barrel']      = { label = 'Lager Wort',         weight = 5000, stack = true, close = true, description = 'Unfermented lager wort, needs fermentation' },
+    ['porter_barrel']     = { label = 'Porter Wort',        weight = 5000, stack = true, close = true, description = 'Unfermented porter wort, needs fermentation' },
+    
+    ['golden_harvest']    = { label = 'Golden Harvest',     weight = 100, stack = true, close = true, description = 'Golden Harvest- A classic golden beer with a hoppy flavor', client = { status = { drunk = 100000 }, usetime = 5000 } },
+    ['hop_bomber']        = { label = 'Hop Bomber',         weight = 100, stack = true, close = true, description = 'Hop Bomber- A hoppy beer with a strong bitter taste', client = { status = { drunk = 120000 }, usetime = 5000 } },
+    ['nightshade']        = { label = 'Night Shade',        weight = 100, stack = true, close = true, description = 'Night Shade- A dark, rich beer with roasted malt flavors', client = { status = { drunk = 150000 }, usetime = 5000 } },
+    ['golden_foam']       = { label = 'Golden Foam',        weight = 100, stack = true, close = true, description = 'Golden Foam- A light, refreshing beer with wheat and citrus notes', client = { status = { drunk = 90000 }, usetime = 5000 } },
+    ['north_star']        = { label = 'North Star',         weight = 100, stack = true, close = true, description = 'North Star- A crisp, clean beer perfect for any occasion', client = { status = { drunk = 80000 }, usetime = 5000 } },
+    ['iron_horse']        = { label = 'Iron Horse',         weight = 100, stack = true, close = true, description = 'Iron Horse- A dark ale with chocolate and coffee notes', client = { status = { drunk = 140000 }, usetime = 5000 } },
+    ['black_oak']         = { label = 'Black Oak',          weight = 100, stack = true, close = true, description = 'Black Oak- Dark Ale', client = { status = { drunk = 140000 }, usetime = 5000 } },
+    ['dragons_tooth']     = { label = 'Dragons Tooth',      weight = 100, stack = true, close = true, description = 'Dragons Tooth- Amber Ale', client = { status = { drunk = 140000 }, usetime = 5000 } },
+    ----
+    ['box_golden_harvest'] = { label = 'Case of Golden Harvest', weight = 1000, stack = false, close = false },
+    ['box_hop_bomber'] = { label = 'Case of Hop Bomber ', weight = 1000, stack = false, close = false },
+    ['box_nightshade'] = { label = 'Case of Night Shade', weight = 1000, stack = false, close = false },
+    ['box_golden_foam'] = { label = 'Case of Golden Foam', weight = 1000, stack = false, close = false },
+    ['box_north_star'] = { label = 'Case of North Star', weight = 1000, stack = false, close = false },
+    ['box_iron_horse'] = { label = 'Case of Iron Horse', weight = 1000, stack = false, close = false },
+    ['box_black_oak'] = { label = 'Case of Black Oak', weight = 1000, stack = false, close = false },
+    ['box_dragons_tooth'] = { label = 'Case of Dragons Tooth', weight = 1000, stack = false, close = false },
+
+    ----- # Hunting # -----
+    ['gg_hunting_map'] = { label = 'Hunting Map', weight = 10, stack = false, close = true, description = 'A map showing hunting locations.' },
+    ['gg_hunting_meat'] = { label = 'Raw Animal Meat', weight = 40, stack = true, close = true, description = 'Freshly hunted animal meat.' },
+    ['gg_hunting_cookedmeat'] = { label = 'Cooked Animal Meat', weight = 40, stack = true, close = true, description = 'Freshly cooked animal meat.' },
+    ['gg_hunting_bones'] = { label = 'Animal Bones', weight = 30, stack = true, close = true, description = 'Bones from hunted animals.' },
+    ['gg_hunting_campfire'] = { label = 'Hunting Campfire', weight = 3000, stack = false, close = true, description = 'A campfire used for cooking animal meat.' },
+    ['gg_hunting_animaltracker'] = { label = 'Hunting Animal Tracker', weight = 2000, stack = false, close = true, description = 'A device used to track animals while hunting.' },
+    ['gg_hunting_animaltrap'] = { label = 'Hunting Animal Trap', weight = 5000, stack = false, close = true, description = 'Trap used to catch animals while hunting.' },
+    ['gg_hunting_trapsensor'] = { label = 'Hunting Trap Sensor', weight = 500, stack = false, close = true, description = 'A sensor used to detect animals in traps.' },
+    ['gg_hunting_kit_01'] = { label = 'Basic Butcher Kit', weight = 2000, stack = false, close = true, description = 'A basic hunting butcher kit for beginners.' },
+    ['gg_hunting_kit_02'] = { label = 'Advanced Butcher Kit', weight = 2000, stack = false, close = true, description = 'An advanced butcher kit for experienced hunters.' },
+    ['gg_hunting_kit_03'] = { label = 'Expert Butcher Kit', weight = 2000, stack = false, close = true, description = 'An expert hunting butcher kit for seasoned hunters.' },
+    ['gg_salt_block_01'] = { label = 'Basic Salt Block', weight = 250, stack = true, close = true, description = 'A basic salt block for beginners.' },
+    ['gg_salt_block_02'] = { label = 'Advanced Salt Block', weight = 250, stack = true, close = true, description = 'An advanced salt block for experienced users.' },
+    ['gg_salt_block_03'] = { label = 'Expert Salt Block', weight = 250, stack = true, close = true, description = 'An expert salt block for seasoned users.' },
+    ['gg_meat_bucket_01'] = { label = 'Basic Meat Bucket', weight = 250, stack = true, close = true, description = 'A basic meat bucket for beginners.' },
+    ['gg_meat_bucket_02'] = { label = 'Advanced Meat Bucket', weight = 250, stack = true, close = true, description = 'An advanced meat bucket for experienced users.' },
+    ['gg_meat_bucket_03'] = { label = 'Expert Meat Bucket', weight = 250, stack = true, close = true, description = 'An expert meat bucket for seasoned users.' },
+    ['gg_pug_bait_01'] = { label = 'Basic Pug Bait', weight = 250, stack = true, close = true, description = 'A basic pug bait for beginners.' },
+    ['gg_pug_bait_02'] = { label = 'Advanced Pug Bait', weight = 250, stack = true, close = true, description = 'An advanced pug bait for experienced users.' },
+    ['gg_pug_bait_03'] = { label = 'Expert Pug Bait', weight = 250, stack = true, close = true, description = 'An expert pug bait for seasoned users.' },
+    ['gg_hunting_feedbait_01'] = { label = 'Basic Feed Trap Bait', weight = 250, stack = true, close = true, description = 'A basic feed trap bait for beginners.' },
+    ['gg_hunting_feedbait_02'] = { label = 'Advanced Feed Trap Bait', weight = 250, stack = true, close = true, description = 'An advanced feed trap bait for experienced users.' },
+    ['gg_hunting_feedbait_03'] = { label = 'Expert Feed Trap Bait', weight = 250, stack = true, close = true, description = 'An expert feed trap bait for seasoned users.' },
+    ['gg_hunting_meatbait_01'] = { label = 'Basic Meat Trap Bait', weight = 250, stack = true, close = true, description = 'A basic meat trap bait for beginners.' },
+    ['gg_hunting_meatbait_02'] = { label = 'Advanced Meat Trap Bait', weight = 250, stack = true, close = true, description = 'An advanced meat trap bait for experienced users.' },
+    ['gg_hunting_meatbait_03'] = { label = 'Expert Meat Trap Bait', weight = 250, stack = true, close = true, description = 'An expert meat trap bait for seasoned users.' },
+    ['gg_deer_antler_01'] = { label = 'Rough Deer Antler', weight = 2500, stack = false, close = true },
+    ['gg_deer_antler_02'] = { label = 'Quality Deer Antler', weight = 2500, stack = false, close = true },
+    ['gg_deer_antler_03'] = { label = 'Pristine Deer Antler', weight = 2500, stack = false, close = true },
+    ['gg_boar_tusk_01'] = { label = 'Rough Boar Tusk', weight = 2500, stack = false, close = true },
+    ['gg_boar_tusk_02'] = { label = 'Quality Boar Tusk', weight = 2500, stack = false, close = true },
+    ['gg_boar_tusk_03'] = { label = 'Pristine Boar Tusk', weight = 2500, stack = false, close = true },
+    ['gg_rabbit_pelt_01'] = { label = 'Rough Rabbit Pelt', weight = 2500, stack = false, close = true },
+    ['gg_rabbit_pelt_02'] = { label = 'Quality Rabbit Pelt', weight = 2500, stack = false, close = true },
+    ['gg_rabbit_pelt_03'] = { label = 'Pristine Rabbit Pelt', weight = 2500, stack = false, close = true },
+    ['gg_pig_lard_01'] = { label = 'Rough Pig Lard', weight = 2500, stack = false, close = true },
+    ['gg_pig_lard_02'] = { label = 'Quality Pig Lard', weight = 2500, stack = false, close = true },
+    ['gg_pig_lard_03'] = { label = 'Pristine Pig Lard', weight = 2500, stack = false, close = true },
+    ['gg_cow_horns_01'] = { label = 'Rough Cow Horns', weight = 2500, stack = false, close = true },
+    ['gg_cow_horns_02'] = { label = 'Quality Cow Horns', weight = 2500, stack = false, close = true },
+    ['gg_cow_horns_03'] = { label = 'Pristine Cow Horns', weight = 2500, stack = false, close = true },
+    ['gg_coyote_fangs_01'] = { label = 'Rough Coyote Fangs', weight = 2500, stack = false, close = true },
+    ['gg_coyote_fangs_02'] = { label = 'Quality Coyote Fangs', weight = 2500, stack = false, close = true },
+    ['gg_coyote_fangs_03'] = { label = 'Pristine Coyote Fangs', weight = 2500, stack = false, close = true },
+    ['gg_cougar_claw_01'] = { label = 'Rough Cougar Claws', weight = 2500, stack = false, close = true },
+    ['gg_cougar_claw_02'] = { label = 'Quality Cougar Claws', weight = 2500, stack = false, close = true },
+    ['gg_cougar_claw_03'] = { label = 'Pristine Cougar Claws', weight = 2500, stack = false, close = true },
+    ['gg_bear_claw_01'] = { label = 'Rough Bear Claws', weight = 2500, stack = false, close = true },
+    ['gg_bear_claw_02'] = { label = 'Quality Bear Claws', weight = 2500, stack = false, close = true },
+    ['gg_bear_claw_03'] = { label = 'Pristine Bear Claws', weight = 2500, stack = false, close = true },
+    ['gg_wolf_fangs_01'] = { label = 'Rough Wolf Fangs', weight = 2500, stack = false, close = true },
+    ['gg_wolf_fangs_02'] = { label = 'Quality Wolf Fangs', weight = 2500, stack = false, close = true },
+    ['gg_wolf_fangs_03'] = { label = 'Pristine Wolf Fangs', weight = 2500, stack = false, close = true },
+    ['gg_hunting_leopardskin_01'] = { label = 'Rough Leopard Skin', weight = 2500, stack = false, close = true },
+    ['gg_hunting_leopardskin_02'] = { label = 'Quality Leopard Skin', weight = 2500, stack = false, close = true },
+    ['gg_hunting_leopardskin_03'] = { label = 'Pristine Leopard Skin', weight = 2500, stack = false, close = true },
+    ['gg_primate_skull_01'] = { label = 'Rough Primate Skull', weight = 2500, stack = false, close = true },
+    ['gg_primate_skull_02'] = { label = 'Quality Primate Skull', weight = 2500, stack = false, close = true },
+    ['gg_primate_skull_03'] = { label = 'Pristine Primate Skull', weight = 2500, stack = false, close = true },
+    ['gg_horse_mane_01'] = { label = 'Rough Horse Mane', weight = 2500, stack = false, close = true },
+    ['gg_horse_mane_02'] = { label = 'Quality Horse Mane', weight = 2500, stack = false, close = true },
+    ['gg_horse_mane_03'] = { label = 'Pristine Horse Mane', weight = 2500, stack = false, close = true },
+    ['gg_bear_hide_01'] = { label = 'Rough Bear Hide', weight = 2500, stack = false, close = true },
+    ['gg_bear_hide_02'] = { label = 'Quality Bear Hide', weight = 2500, stack = false, close = true },
+    ['gg_bear_hide_03'] = { label = 'Pristine Bear Hide', weight = 2500, stack = false, close = true },
+    ['gg_trapped_cat_01'] = { label = 'Rough Trapped Cat', weight = 2500, stack = false, close = true },
+    ['gg_trapped_cat_02'] = { label = 'Quality Trapped Cat', weight = 2500, stack = false, close = true },
+    ['gg_trapped_cat_03'] = { label = 'Pristine Trapped Cat', weight = 2500, stack = false, close = true },
+    ['gg_trapped_dog_01'] = { label = 'Rough Trapped Dog', weight = 2500, stack = false, close = true },
+    ['gg_trapped_dog_02'] = { label = 'Quality Trapped Dog', weight = 2500, stack = false, close = true },
+    ['gg_trapped_dog_03'] = { label = 'Pristine Trapped Dog', weight = 2500, stack = false, close = true },
+    ['gg_trapped_chickenhawk_01'] = { label = 'Rough Trapped Chickenhawk', weight = 2500, stack = false, close = true },
+    ['gg_trapped_chickenhawk_02'] = { label = 'Quality Trapped Chickenhawk', weight = 2500, stack = false, close = true },
+    ['gg_trapped_chickenhawk_03'] = { label = 'Pristine Trapped Chickenhawk', weight = 2500, stack = false, close = true },
+    ['gg_trapped_rabbit_01'] = { label = 'Rough Trapped Rabbit', weight = 2500, stack = false, close = true },
+    ['gg_trapped_rabbit_02'] = { label = 'Quality Trapped Rabbit', weight = 2500, stack = false, close = true },
+    ['gg_trapped_rabbit_03'] = { label = 'Pristine Trapped Rabbit', weight = 2500, stack = false, close = true },
+    ['gg_trapped_hen_01'] = { label = 'Rough Trapped Hen', weight = 2500, stack = false, close = true },
+    ['gg_trapped_hen_02'] = { label = 'Quality Trapped Hen', weight = 2500, stack = false, close = true },
+    ['gg_trapped_hen_03'] = { label = 'Pristine Trapped Hen', weight = 2500, stack = false, close = true },    
+    
+    ----- Blackmarket Items -----
+   ['lockpick'] = { label = 'Lockpick', weight = 160, stack = true, close = true },
+   ['jammer'] = { label = 'Radio Jammer', weight = 10000, allowArmed = true, client = { event = 'mm_radio:client:usejammer' } },
+   ['advancedlockpick'] = { label = 'Advanced Lockpick', weight = 500, stack = true, close = true },
+   ['gatecrack'] = { label = 'Gatecrack', weight = 1000, stack = true, close = true },
+   ['cryptostick'] = { label = 'Crypto Stick', weight = 100, stack = true, close = true },
+   ['trojan_usb'] = { label = 'Trojan USB', weight = 100, stack = true, close = true },
+   ['thermite'] = { label = 'Thermite', weight = 1000, stack = true, close = true },
+   ['r1_tablet'] = { label = 'Labtop PC', weight = 700, stack = false, close = true, consume = 0.25, decay = true, client = { event = 'R1-Investments:OpenNUIFromItem', image = 'tablet.png' }, description = 'Access point for a "legal" investment firm' },
+   ['boostingtablet'] = { label = 'Boosting Tablet', weight = 100, stack = false, close = true, description = "Seems like something's installed on this.", client = { export = 'rahe-boosting.boostingtablet' } },
+   ['hackingdevice'] = { label = 'Hacking Device', weight = 100, stack = false, close = true, description = 'Will allow you to bypass vehicle security systems.', client = { export = 'rahe-boosting.hackingdevice' } },
+   ['gpshackingdevice'] = { label = 'GPS Hacking Device', weight = 100, stack = false, close = true, description = 'If you wish to disable vehicle GPS systems.', client = { export = 'rahe-boosting.gpshackingdevice' } },
+   
+   ----- Hardware and Electronics -----
+   ['screwdriverset'] = { label = 'Screwdriver Set', weight = 500, stack = true, close = true },
+   ['electronickit'] = { label = 'Electronic Kit', weight = 500, stack = true, close = true },
+   ['cleaningkit'] = { label = 'Cleaning Kit', weight = 500, stack = true, close = true },
+   ['repairkit'] = { label = 'Repair Kit', weight = 2500, stack = true, close = true },
+   ['advancedrepairkit'] = { label = 'Advanced Repair Kit', weight = 4000, stack = true, close = true },
+   ['drill'] = { label = 'Drill', weight = 5000, stack = true, close = true },
+   ['radio'] = { label = 'Radio', weight = 1000, allowArmed = true, consume = 0, client = { event = 'mm_radio:client:use' } },
+   ['radiocell'] = { label = 'AAA Cells', weight = 1000, stack = true, allowArmed = true, client = { event = 'mm_radio:client:recharge' } },
+   ['lighter'] = { label = 'Lighter', weight = 200, stack = true, close = true },
+   ['kq_tow_rope'] = { label = 'Towing Rope', weight = 2000, stack = true, close = true, consume = 0, server = { export = 'kq_towing2.UseTowRope' } },
+   ['kq_winch']    = { label = 'Car Winch',   weight = 4000, stack = true, close = true, consume = 0, server = { export = 'kq_towing2.UseWinch'    } },   
+   ----
+   ['storage_briefcase'] = { label = 'Storage Box', weight = 2500, stack = true, close = true, description = 'A box for storing items' },
+   ['storage_lock'] = { label = 'Storage Lock', weight = 1000, stack = true, close = true, description = 'A lock for securing storage' },
+   ['storage_keypad'] = { label = 'Storage Keypad', weight = 1000, stack = true, close = true, description = 'A keypad for securing storage' },
+   ['bolt_cutters'] = { label = 'Bolt Cutters', weight = 1000, stack = true, close = true, description = 'A tool for cutting locks' },
+   
+   ----- Phone -----
+   ['phone'] = { label = 'Phone', weight = 190, stack = false, close = true },
+   ['phone_white'] = { label = 'White Phone', weight = 190, stack = false, close = true },
+   ['phone_gold'] = { label = 'Gold Phone', weight = 190, stack = false, close = true },
+   ['phone_red'] = { label = 'Red Phone', weight = 190, stack = false, close = true },
+   ['phone_blue'] = { label = 'Blue Phone', weight = 190, stack = false, close = true },
+   ['phone_green'] = { label = 'Green Phone', weight = 190, stack = false, close = true },
+   ['phone_pink'] = { label = 'Pink Phone', weight = 190, stack = false, close = true },
+   ['phone_green_light'] = { label = 'Green Light Phone', weight = 190, stack = false, close = true },
+   ['phone_purple'] = { label = 'Purple Phone', weight = 1, stack = true, close = true },
+   ['phone_purple_deep'] = { label = 'Deep Purple Phone', weight = 1, stack = true, close = true },
+   ['powerbank'] = { label = 'Powerbank', weight = 190, stack = false, close = false },
+   ['phone_no_case'] = { label = 'No phone case', weight = 0, stack = false, close = true },
+   ['phone_case_1'] = { label = 'Phone Case 1', weight = 190, stack = false, close = true },
+   ['phone_case_2'] = { label = 'Phone Case 2', weight = 190, stack = false, close = true },
+   ['phone_case_3'] = { label = 'Phone Case 3', weight = 190, stack = false, close = true },
+   ['phone_case_4'] = { label = 'Phone Case 4', weight = 190, stack = false, close = true },
+   ['phone_case_5'] = { label = 'Phone Case 5', weight = 190, stack = false, close = true },
+   ['phone_case_6'] = { label = 'Phone Case 6', weight = 190, stack = false, close = true },
+   ['phone_case_7'] = { label = 'Phone Case 7', weight = 190, stack = false, close = true },
+   ['phone_case_8'] = { label = 'Phone Case 8', weight = 190, stack = false, close = true },
+   ['phone_case_9'] = { label = 'Phone Case 9', weight = 190, stack = false, close = true },
+   ['phone_case_10'] = { label = 'Phone Case 10', weight = 190, stack = false, close = true },
+   
+   ----- Value -----
+   ['diamond_ring'] = { label = 'Diamond', weight = 1500, stack = true, close = true },
+   ['rolex'] = { label = 'Golden Watch', weight = 1500, stack = true, close = true },
+   ['goldbar'] = { label = 'Gold Bar', weight = 1500, stack = true, close = true },
+   ['goldchain'] = { label = 'Golden Chain', weight = 1500, stack = true, close = true },
+   
+   ['painkillers'] = { label = 'Painkillers', weight = 400, stack = true, close = true },
+   ['ifaks'] = { label = 'Individual First Aid Kit', weight = 2500, stack = true, close = true },
+   ['bandage'] = { label = 'Bandage', weight = 115, stack = true, close = true },
+   ['firstaid'] = { label = 'First Aid', weight = 2500, stack = true, close = true },
+
+   ----- Wasabi -----
+   ['bandage'] = { label = 'Bandage', description = 'A simple bandage to stop minor bleeding', weight = 25, stack = true, close = true, server = { export = 'wasabi_ambulance_v2.bandage' } },
+   ['medkit'] = { label = 'Med-Kit', description = 'A medical kit for treating injuries', weight = 250, stack = true, close = true, server = { export = 'wasabi_ambulance_v2.medkit' } },
+   ['firstaidkit'] = { label = 'First Aid Kit', description = 'A comprehensive first aid kit for serious injuries', weight = 350, stack = true, close = true, server = { export = 'wasabi_ambulance_v2.firstaidkit' } },
+   ['painkillers'] = { label = 'Painkillers', description = 'Pills to temporarily relieve pain and reduce stun effects', weight = 10, stack = true, close = true, server = { export = 'wasabi_ambulance_v2.painkillers' } },
+   ['ifak'] = { label = 'IFAK', description = 'Individual First Aid Kit', weight = 150, stack = true, close = true, server = { export = 'wasabi_ambulance_v2.ifak' } },
+   -----
+   ['forceps'] = { label = 'Forceps', description = 'Used to treat gunshot wounds', weight = 100, stack = true, close = true },
+   ['pliers'] = { label = 'Pliers', description = 'Used to treat taser prong wounds', weight = 25, stack = true, close = true },
+   ['suture'] = { label = 'Suture', description = 'Used to treat cuts', weight = 25, stack = true, close = true },
+   ['splint'] = { label = 'Splint', description = 'Used to treat broken bones', weight = 50, stack = true, close = true },
+   ['icepack'] = { label = 'Ice Pack', description = 'Used to treat punches and bruises', weight = 25, stack = true, close = true },
+   ['traumakit'] = { label = 'Trauma Kit', description = 'Used to treat blunt force trauma', weight = 75, stack = true, close = true },
+   ['burncream'] = { label = 'Burn Cream', description = 'Used to treat burns', weight = 10, stack = true, close = true },
+   -----
+   ['medbag'] = { label = 'Medbag', description = 'A portable medical bag containing supplies', weight = 50, stack = false, close = false, consume = 0, server = { export = 'wasabi_ambulance_v2.medbag' } },
+   ['stretcher'] = { label = 'Stretcher', description = 'A portable stretcher for transporting patients', weight = 500, stack = false, close = true, consume = 0, server = { export = 'wasabi_ambulance_v2.stretcher' } },
+   ['medikit']         = { label = 'Medikit',          weight = 165, stack = true,  close = true },
+   ['medbag']          = { label = 'Medical Bag',      weight = 165, stack = false, close = true },
+   -----
+   ['sedative']        = { label = 'Sedative',         weight = 15,  stack = true,  close = true },
+   ['morphine30']      = { label = 'Morphine 30MG',    weight = 2,   stack = true,  close = true },
+   ['morphine15']      = { label = 'Morphine 15MG',    weight = 2,   stack = true,  close = true },
+   ['perc30']          = { label = 'Percocet 30MG',    weight = 2,   stack = true,  close = true },
+   ['perc10']          = { label = 'Percocet 10MG',    weight = 2,   stack = true,  close = true },
+   ['perc5']           = { label = 'Percocet 5MG',     weight = 2,   stack = true,  close = true },
+   ['vic10']           = { label = 'Vicodin 10MG',     weight = 2,   stack = true,  close = true },
+   ['vic5']            = { label = 'Vicodin 5MG',      weight = 2,   stack = true,  close = true },
+   ['recoveredbullet'] = { label = 'Recovered Bullet', weight = 1,   stack = true,  close = false },
+   ['uvlight']         = { label = 'UV Light',    weight = 95,  stack = false, close = true, description = 'Portable ultraviolet light for detecting fluids or forensics' },
+   ['bleachwipes']     = { label = 'Bleach Wipes', weight = 185, stack = true,  close = true, description = 'Disinfectant bleach wipes for cleaning surfaces or evidence' },
+   ['carkeys']         = { label = 'Car Keys', weight = 100, stack = false, close = true, description = 'Set of keys for a vehicle' },
+   ['handcuffs']         = { label = 'Handcuffs',          weight = 2, stack = true, close = true, description = 'Standard police-issue handcuffs' },
+   ['bobby_pin']         = { label = 'Bobby Pin',          weight = 2, stack = true, close = true, description = 'Simple metal pin, useful for basic lockpicking' },
+   ['tracking_bracelet'] = { label = 'Tracking Bracelet',  weight = 2, stack = true, close = true, description = 'Ankle monitor with built-in GPS tracking' },
+   
+   ----- Fishing -----
+   ['mackeral']        = { label = 'Mackeral',   weight = 250, stack = true, close = false, description = 'Freshly caught tuna'},
+   ['yellowperch']        = { label = 'Yellow Perch',   weight = 250, stack = true, close = false, description = 'Freshly caught Yellow Perch'},   
+   ['largemouth_bass'] = {label = 'Largemouth Bass' , weight = 300, stack = true, close = false, description = 'Freshly caught Bass'},
+   ['tuna']            = { label = 'Tuna',       weight = 650, stack = true, close = false, description = 'Freshly caught tuna'},
+   ['salmon']          = { label = 'Salmon',     weight = 350, stack = true, close = false, description = 'Fresh salmon fillet'},
+   ['trout']           = { label = 'Trout',      weight = 250, stack = true, close = false, description = 'Fresh rainbow trout'},
+   ['anchovy']         = { label = 'Anchovy',    weight = 50,  stack = true, close = false, description = 'Small salty anchovies'},
+   ['fishbait']        = { label = 'Fish Bait',  weight = 50,  stack = true, close = false, description = 'Bait for catching fish'},
+   ['fishingrod']      = { label = 'Fishing Rod',weight = 800, stack = true, close = true,  description = 'Standard fishing rod'},
+   
+   ----- Misc Items -----
+   ['parachute'] = { label = 'Parachute', weight = 8000, stack = false, close = true, client = { anim = { dict = 'clothingshirt', clip = 'try_shirt_positive_d' }, usetime = 1500 } },
+   ['garbage'] = { label = 'Garbage' },
+   ['paperbag'] = { label = 'Paper Bag', weight = 1, stack = false, close = false, consume = 0 },
+   ['armour'] = { label = 'Bulletproof Vest', weight = 3000, stack = false, close = true, client = { anim = { dict = 'clothingshirt', clip = 'try_shirt_positive_d' }, usetime = 3500 } },
+   ['empty_bag'] = { label = 'Empty Weed Bag', weight = 0, stack = true, close = true },
+   ['firework1'] = { label = '2Brothers', weight = 1000, stack = true, close = true },
+   ['firework2'] = { label = 'Poppelers', weight = 1000, stack = true, close = true },
+   ['firework3'] = { label = 'WipeOut', weight = 1000, stack = true, close = true },
+   ['firework4'] = { label = 'Weeping Willow', weight = 1000, stack = true, close = true },
+   ['jerry_can'] = { label = 'Jerrycan', weight = 3000, stack = true, close = true },
+   ['nitrous'] = { label = 'Nitrous', weight = 1000, stack = true, close = true },
+   ['walking_stick'] = { label = 'Walking Stick', weight = 1000, stack = true, close = true },
+   ['binoculars'] = { label = 'Binoculars', weight = 800, stack = true, close = true },
+   ['stickynote'] = { label = 'Sticky Note', weight = 0, stack = true, close = true },
+   ['empty_evidence_bag'] = { label = 'Empty Evidence Bag', weight = 200, stack = true, close = true },
+   ['filled_evidence_bag'] = { label = 'Filled Evidence Bag', weight = 200, stack = true, close = true },
+   ['harness'] = { label = 'Harness', weight = 200, stack = true, close = true },
+   ['spraycan'] = { label = 'Spray Can', weight = 1, stack = true, close = false },
+   ['sprayremover'] = { label = 'Spray Remover', weight = 1, stack = true, close = false },
+
+   ----- JG Mechanic -----
+   ['engine_oil']            = { label = 'Engine Oil',           weight = 1000, stack = true,  close = true },
+   ['tyre_replacement']      = { label = 'Tyre Replacement',     weight = 1000, stack = true,  close = true },
+   ['clutch_replacement']    = { label = 'Clutch Replacement',   weight = 1000, stack = true,  close = true },
+   ['air_filter']            = { label = 'Air Filter',           weight = 100,  stack = true,  close = true },
+   ['spark_plug']            = { label = 'Spark Plug',           weight = 1000, stack = true,  close = true },
+   ['brakepad_replacement']  = { label = 'Brakepad Replacement', weight = 1000, stack = true,  close = true },
+   ['suspension_parts']      = { label = 'Suspension Parts',     weight = 1000, stack = true,  close = true },
+   ['i4_engine']             = { label = 'I4 Engine',            weight = 1000, stack = false, close = true },
+   ['v6_engine']             = { label = 'V6 Engine',            weight = 1000, stack = false, close = true },
+   ['v8_engine']             = { label = 'V8 Engine',            weight = 1000, stack = false, close = true },
+   ['v12_engine']            = { label = 'V12 Engine',           weight = 1000, stack = false, close = true },
+   ['turbocharger']          = { label = 'Turbocharger',         weight = 1000, stack = false, close = true },
+   ['ev_motor']              = { label = 'EV Motor',             weight = 1000, stack = false, close = true },
+   ['ev_battery']            = { label = 'EV Battery',           weight = 1000, stack = false, close = true },
+   ['ev_coolant']            = { label = 'EV Coolant',           weight = 1000, stack = true,  close = true },
+   ['awd_drivetrain']        = { label = 'AWD Drivetrain',       weight = 1000, stack = false, close = true },
+   ['rwd_drivetrain']        = { label = 'RWD Drivetrain',       weight = 1000, stack = false, close = true },
+   ['fwd_drivetrain']        = { label = 'FWD Drivetrain',       weight = 1000, stack = false, close = true },
+   ['slick_tyres']           = { label = 'Slick Tyres',          weight = 1000, stack = true,  close = true },
+   ['semi_slick_tyres']      = { label = 'Semi Slick Tyres',     weight = 1000, stack = true,  close = true },
+   ['offroad_tyres']         = { label = 'Offroad Tyres',        weight = 1000, stack = true,  close = true },
+   ['drift_tuning_kit']      = { label = 'Drift Tuning Kit',     weight = 1000, stack = true,  close = true },
+   ['ceramic_brakes']        = { label = 'Ceramic Brakes',       weight = 1000, stack = true,  close = true },
+   ['lighting_controller']   = { label = 'Lighting Controller',  weight = 100,  stack = false, close = true, client = { event = 'jg-mechanic:client:show-lighting-controller' } },
+   ['stancing_kit']          = { label = 'Stancer Kit',          weight = 100,  stack = false, close = true, client = { event = 'jg-mechanic:client:show-stancer-kit' } },
+   ['cosmetic_part']         = { label = 'Cosmetic Parts',       weight = 100,  stack = true,  close = true },
+   ['respray_kit']           = { label = 'Respray Kit',          weight = 1000, stack = true,  close = true },
+   ['vehicle_wheels']        = { label = 'Vehicle Wheels Set',   weight = 1000, stack = true,  close = true },
+   ['tyre_smoke_kit']        = { label = 'Tyre Smoke Kit',       weight = 1000, stack = true,  close = true },
+   ['bulletproof_tyres']     = { label = 'Bulletproof Tyres',    weight = 1000, stack = true,  close = true },
+   ['extras_kit']            = { label = 'Extras Kit',           weight = 1000, stack = true,  close = true },
+   ['nitrous_bottle']        = { label = 'Nitrous Bottle',       weight = 1000, stack = true,  close = true, client = { event = 'jg-mechanic:client:use-nitrous-bottle' } },
+   ['empty_nitrous_bottle']  = { label = 'Empty Nitrous Bottle', weight = 1000, stack = true,  close = true },
+   ['nitrous_install_kit']   = { label = 'Nitrous Install Kit',  weight = 1000, stack = true,  close = true },
+   ['cleaning_kit']          = { label = 'Cleaning Kit',         weight = 1000, stack = true,  close = true, client = { event = 'jg-mechanic:client:clean-vehicle' } },
+   ['repair_kit']            = { label = 'Repair Kit',           weight = 1000, stack = true,  close = true, client = { event = 'jg-mechanic:client:repair-vehicle' } },
+   ['duct_tape']             = { label = 'Duct Tape',            weight = 1000, stack = true,  close = true, client = { event = 'jg-mechanic:client:use-duct-tape' } },
+   ['performance_part']      = { label = 'Performance Parts',    weight = 1000, stack = true,  close = true },
+   ['mechanic_tablet']       = { label = 'Mechanic Tablet',      weight = 1000, stack = false, close = true, client = { event = 'jg-mechanic:client:use-tablet' } },
+   ['manual_gearbox']        = { label = 'Manual Gearbox',       weight = 1000, stack = false, close = true }, 
+
+   ----- KLB Scrapyard ----
+   ['catalytic_converter'] = { label = 'Catalytic Converter', weight = 200, stack = true, close = false, description = 'Precious metal honeycomb' },
+   ['rubber_tire'] = { label = 'Rubber Tire', weight = 300, stack = true, close = false, description = 'A worn tire from the scrapyard' },
+   ['klb_grinder'] = { label = 'Scrapyard Grinder', weight = 500, stack = true, close = false, description = 'Used to grind broken scrapyard bolts.' },
+   ['klb_cutter'] = { label = 'Scrapyard Cutter', weight = 500, stack = true, close = false, description = 'Heavy-duty cutters for scrapyard parts.' },
+   ['klb_torch'] = { label = 'Scrapyard Torch', weight = 500, stack = true, close = false, description = 'Cut through metal when stripping vehicles.' },
+   ['tool_kit'] = { label = 'Toolkit', weight = 1000, stack = true, close = false, description = 'Very useful to screw... screws...' },
+   ['hacking_device'] = { label = 'Mobile Car Relay', weight = 4000, stack = true, close = true, description = 'Have something to with gps' },
+   ['mechanic_bumpers'] = { label = 'Kofangere', weight = 0, stack = true, close = true, description = '' },
+   ['mechanic_skirts'] = { label = 'Side Skirts', weight = 0, stack = true, close = true, description = '' },
+   ['mechanic_exhaust'] = { label = 'Exhaust System', weight = 0, stack = true, close = true, description = '' },
+   ['mechanic_hood'] = { label = 'Hood', weight = 0, stack = true, close = true, description = '' },
+   ['mechanic_roof'] = { label = 'Roof', weight = 0, stack = true, close = true, description = '' },
+   ['mechanic_spoilers'] = { label = 'Spoiler', weight = 0, stack = true, close = true, description = '' },
+   ['mechanic_rollcage'] = { label = 'Roll cage', weight = 0, stack = true, close = true, description = '' },
+   ['mechanic_seats'] = { label = 'Removable Seat', weight = 0, stack = true, close = true, description = '' },
+   
+   ----- Devcore Smoking -----
+   --- Packs ---
+   ['redwood_redpak']       = { label = 'Redwood Red Pack',   weight = 50,  stack = false, close = true,  client = { export = 'devcore_smoke.OpenCigPack' } },
+   ['redwood_goldpak']      = { label = 'Redwood Gold Pack',  weight = 50,  stack = false, close = true,  client = { export = 'devcore_smoke.OpenCigPack' } },
+   ['athena_pack']          = { label = 'Athena Pack',        weight = 50,  stack = false, close = true,  client = { export = 'devcore_smoke.OpenCigPack' } },
+   ['tabacco_mill']         = { label = 'Millicent Pack',     weight = 100,  stack = false, close = true, },
+   ['tabacco_yukon']        = { label = 'Yukon Pack',         weight = 100,  stack = false, close = true, },
+
+   ['cigar_estanciapak']    = { label = 'Estancia Pack',      weight = 50,  stack = false, close = true,  client = { export = 'devcore_smoke.OpenCigPack' } },
+   ['cigar_homiespak']      = { label = 'Homies Pack',        weight = 50,  stack = false, close = true,  client = { export = 'devcore_smoke.OpenCigPack' } },
+   ['cigar_drthornespak']   = { label = 'DR.Thornes Pack',    weight = 50,  stack = false, close = true,  client = { export = 'devcore_smoke.OpenCigPack' } },
+   ['mill_tobacco']         = { label = 'Mill Loose Tobacco',    weight = 50,  stack = true, close = true,  client = { export = 'devcore_smoke.OpenCigPack' } },
+   ['yukon_tobacco']        = { label = 'Yukon Loose Tobacco',    weight = 50,  stack = true, close = true,  client = { export = 'devcore_smoke.OpenCigPack' } },
+   ['tabaco_jollyjack']     = { label = 'Jolly-Jack can',     weight = 100,  stack = false, close = true, },
+   ['tabaco_yukonp']        = { label = 'Yukon Can',         weight = 100,  stack = false, close = true, },
+   
+   --- Singles ---
+   ['cigar_estancia']     = { label = 'Estancia Cigar',         weight = 100, stack = true,  close = true,  client = { export = 'devcore_smoke.StartPlayerSmoking' } },
+   ['cigar_homies']       = { label = 'Homies Cigar',           weight = 100, stack = true,  close = true,  client = { export = 'devcore_smoke.StartPlayerSmoking' } },
+   ['cigar_drthornes']    = { label = 'Dr.Thornes Cigar',       weight = 100, stack = true,  close = true,  client = { export = 'devcore_smoke.StartPlayerSmoking' } },
+
+   ['redwood_cig']        = { label = 'Redwood Cigarette',       weight = 100, stack = true,  close = true,  client = { export = 'devcore_smoke.StartPlayerSmoking' } },
+   ['redwoodgold_cig']    = { label = 'Redwood Gold Cigarette',  weight = 100, stack = true,  close = true,  client = { export = 'devcore_smoke.StartPlayerSmoking' } },
+   ['athena_cig']         = { label = 'Athena Cigarette',        weight = 100, stack = true,  close = true,  client = { export = 'devcore_smoke.StartPlayerSmoking' } },
+   ['mhandmade_cig']       = { label = 'Mills Handmade',      weight = 100, stack = true,  close = true,  client = { export = 'devcore_smoke.StartPlayerSmoking' } },
+   ['yhandmade_cig']       = { label = 'Yukon Handmade',      weight = 100, stack = true,  close = true,  client = { export = 'devcore_smoke.StartPlayerSmoking' } },
+   ['tabaco_yukonpp']      = { label = 'Yukon Pouch',             weight = 100, stack = true,  close = true,  client = { export = 'devcore_smoke.StartPlayerSmoking' } },
+   ['tabaco_jollyjackp']   = { label = 'Jolly-Jack Pouch',        weight = 100, stack = true,  close = true,  client = { export = 'devcore_smoke.StartPlayerSmoking' } },
+
+   ['classic_lighter']    = { label = 'Classic Lighter',          weight = 250, stack = false, close = true,  client = { export = 'devcore_smoke.UseLighter' } },
+   ['gold_lighter']       = { label = 'Gold Lighter',             weight = 600, stack = false, close = true,  client = { export = 'devcore_smoke.UseLighter' } },
+   ['blunt_paper']        = { label = 'Blunt Wraps',              weight = 20,  stack = false, close = true,  client = { export = 'devcore_smoke.UseRollingPaper' } },
+   ['rawdogs_paper']      = { label = 'Raw Rolling Paper',        weight = 20,  stack = false, close = true,  client = { export = 'devcore_smoke.UseRollingPaper' } },
+   ['bong']               = { label = 'Bong',                     weight = 150, stack = false, close = true,  client = { export = 'devcore_smoke.StartPlayerSmoking' } },
+   ['vape']               = { label = 'Vape',                     weight = 100, stack = false, close = true,  client = { export = 'devcore_smoke.StartPlayerSmoking' } },
+   ['puff_vape']          = { label = 'Puff Vape',                weight = 100, stack = false, close = true,  client = { export = 'devcore_smoke.StartPlayerSmoking' } },
+   ['cherry_liquid']      = { label = 'Cherry Liquid',            weight = 250, stack = false, close = false },
+   ['blueberry_liquid']   = { label = 'Blueberry Liquid',         weight = 250, stack = false, close = false },
+
+   -----# White Widow #-----
+   ['whitewidow_menu'] = { label = 'White Widow Menu', weight = 1, stack = true, close = true },
+   ['cbd_skunk_crop'] = { label = 'Skunk Crop', weight = 50, stack = true, close = false },
+   ['cbd_ogkush_crop'] = { label = 'OG Kush Crop', weight = 50, stack = true, close = false },
+   ['cbd_whitewidow_crop'] = { label = 'White Widow Crop', weight = 50, stack = true, close = false },
+   ['cbd_ak47_crop'] = { label = 'AK 47 Crop', weight = 50, stack = true, close = false },
+   ['cbd_amnesia_crop'] = { label = 'Amnesia Crop', weight = 50, stack = true, close = false },
+   ['cbd_purplehaze_crop'] = { label = 'Purple-Haze Crop', weight = 50, stack = true, close = false },
+   ['cbd_gelato_crop'] = { label = 'Gelato Crop', weight = 50, stack = true, close = false },
+   ['cbd_zkittlez_crop'] = { label = 'Zkittlez Crop', weight = 50, stack = true, close = false },
+   ['cbd_skunk_bag'] = { label = 'Skunk 2g', weight = 2, stack = true, close = true },
+   ['cbd_ogkush_bag'] = { label = 'OGKush 2g', weight = 2, stack = true, close = true },
+   ['cbd_whitewidow_bag'] = { label = 'White Widow 2g', weight = 2, stack = true, close = true },
+   ['cbd_ak47_bag'] = { label = 'AK47 2g', weight = 2, stack = true, close = true },
+   ['cbd_amnesia_bag'] = { label = 'Amnesia 2g', weight = 2, stack = true, close = true },
+   ['cbd_purplehaze_bag'] = { label = 'Purple-Haze 2g', weight = 2, stack = true, close = true },
+   ['cbd_gelato_bag'] = { label = 'Gelato 2g', weight = 2, stack = true, close = true },
+   ['cbd_zkittlez_bag'] = { label = 'Zkittles 2g', weight = 2, stack = true, close = true },
+   ['cbd_skunk_joint'] = { label = 'Skunk Joint', weight = 1, stack = true, close = true },
+   ['cbd_ogkush_joint'] = { label = 'OG Kush Joint', weight = 1, stack = true, close = true },
+   ['cbd_whitewidow_joint'] = { label = 'White Widow Joint', weight = 1, stack = true, close = true },
+   ['cbd_ak47_joint'] = { label = 'AK 47 Joint', weight = 1, stack = true, close = true },
+   ['cbd_amnesia_joint'] = { label = 'Amnesia Joint', weight = 1, stack = true, close = true },
+   ['cbd_purplehaze_joint'] = { label = 'Purple-Haze Joint', weight = 1, stack = true, close = true },
+   ['cbd_gelato_joint'] = { label = 'Gelato Joint', weight = 1, stack = true, close = true },
+   ['cbd_zkittlez_joint'] = { label = 'Zkittlez Joint', weight = 1, stack = true, close = true },
+   ['drug_shears'] = { label = 'Trimming Shears', weight = 200, stack = true, close = true },
+   
+   ['bong'] = { label = 'Bong', weight = 500, stack = true, close = true },
+   ['empty_bag'] = { label = 'Empty Weed Bag', weight = 0, stack = true, close = true },
+   -----# Ingred #-----
+   ['bakingsoda'] = { label = 'Baking Soda', weight = 250, stack = true, close = false },
+   ['eggs'] = { label = 'Eggs', weight = 100, stack = true, close = true },
+   ['honey'] = { label = 'Honey', weight = 100, stack = true, close = false },
+   ['milk'] = { label = 'Milk', weight = 200, stack = true, close = true },
+   ['flavor_juice'] = { label = 'Strawberries', weight = 100, stack = true, close = true },
+   ['butter'] = { label = 'Butter', weight = 200, stack = true, close = true },
+   ['gelatine'] = { label = 'Gelatine', weight = 100, stack = true, close = true },
+   ['gummymould'] = { label = 'Gummy Mould', weight = 400, stack = true, close = true },
+   ['chocolatechips'] = { label = 'Chocolate Chips', weight = 400, stack = true, close = true },
+   ['flour'] = { label = 'Flour', weight = 400, stack = true, close = true },
+   -----# Gummy #-----
+   ['skunk_gummy'] = { label = 'Skunk Gummy Bears', weight = 250, stack = true, close = false },
+   ['ogkush_gummy'] = { label = 'OG Kush Gummies', weight = 250, stack = true, close = false },
+   ['whitewidow_gummy'] = { label = 'White Widow Gummies', weight = 250, stack = true, close = false },
+   ['ak47_gummy'] = { label = 'AK47 Gummies', weight = 250, stack = true, close = false },
+   ['amnesia_gummy'] = { label = 'Amnesia Gummies', weight = 250, stack = true, close = false },
+   ['purplehaze_gummy'] = { label = 'Purple Haze Gummies', weight = 250, stack = true, close = false },
+   ['gelato_gummy'] = { label = 'Gelato Gummies', weight = 250, stack = true, close = false },
+   ['zkittlez_gummy'] = { label = 'Zkittles Gummies', weight = 250, stack = true, close = false },
+   -----# Cookie #-----
+   ['ak47_cookie'] = { label = 'AK47 Cookie', weight = 75, stack = true, close = false },
+   ['skunk_cookie'] = { label = 'Skunk Cookie', weight = 75, stack = true, close = false },
+   ['whitewidow_cookie'] = { label = 'White Widow Cookie', weight = 75, stack = true, close = false },
+   ['ogkush_cookie'] = { label = 'OG Kush Cookie', weight = 75, stack = true, close = false },
+   ['amnesia_cookie'] = { label = 'Amnesia Cookie', weight = 75, stack = true, close = false },
+   ['purplehaze_cookie'] = { label = 'Purple Haze Cookie', weight = 75, stack = true, close = false },
+   ['gelato_cookie'] = { label = 'Gelato Cookie', weight = 75, stack = true, close = false },
+   ['zkittlez_cookie'] = { label = 'Zkittles Cookie', weight = 75, stack = true, close = false },
+
+   -----# Fuji Oil #-----
+   ['empty_oil'] = { label = 'Empty Oil Container', weight = 1000, stack = true, close = false, description = 'An empty container for collecting crude oil' },
+   ['crude_light'] = { label = 'Light Crude Oil', weight = 2000, stack = true, close = false, description = 'Unrefined light crude oil' },
+   ['crude_heavy'] = { label = 'Heavy Crude Oil', weight = 2500, stack = true, close = false, description = 'Unrefined heavy crude oil' },
+   ['refined_light_pure'] = { label = 'Pure Light Oil', weight = 1800, stack = true, close = false, description = 'High-quality refined light oil' },
+   ['refined_light_standard'] = { label = 'Standard Light Oil', weight = 1800, stack = true, close = false, description = 'Standard-quality refined light oil' },
+   ['refined_light_dirty'] = { label = 'Dirty Light Oil', weight = 1800, stack = true, close = false, description = 'Low-quality refined light oil' },
+   ['refined_heavy_pure'] = { label = 'Pure Heavy Oil', weight = 2200, stack = true, close = false, description = 'High-quality refined heavy oil' },
+   ['refined_heavy_standard'] = { label = 'Standard Heavy Oil', weight = 2200, stack = true, close = false, description = 'Standard-quality refined heavy oil' },
+   ['refined_heavy_dirty'] = { label = 'Dirty Heavy Oil', weight = 2200, stack = true, close = false, description = 'Low-quality refined heavy oil' },
+   ['empty_drum'] = { label = 'Empty Oil Drum', weight = 1500, stack = true, close = false, description = 'An empty drum for packaging refined oil' },
+   ['packaged_light_pure'] = { label = 'Packaged Pure Light Oil', weight = 3000, stack = true, close = false, description = 'High-quality light oil ready for delivery' },
+   ['packaged_light_standard'] = { label = 'Packaged Standard Light Oil', weight = 3000, stack = true, close = false, description = 'Standard-quality light oil ready for delivery' },
+   ['packaged_light_dirty'] = { label = 'Packaged Dirty Light Oil', weight = 3000, stack = true, close = false, description = 'Low-quality light oil ready for delivery' },
+   ['packaged_heavy_pure'] = { label = 'Packaged Pure Heavy Oil', weight = 3500, stack = true, close = false, description = 'High-quality heavy oil ready for delivery' },
+   ['packaged_heavy_standard'] = { label = 'Packaged Standard Heavy Oil', weight = 3500, stack = true, close = false, description = 'Standard-quality heavy oil ready for delivery' },
+   ['packaged_heavy_dirty'] = { label = 'Packaged Dirty Heavy Oil', weight = 3500, stack = true, close = false, description = 'Low-quality heavy oil ready for delivery' },   
+   ['sludge'] = { label = 'Sludge', weight = 1000, stack = true, close = false, description = 'An empty container for collecting crude oil' },
+   ['sulfur_chunk'] = { label = 'Sulfur Chunk', weight = 1000, stack = true, close = false, description = 'An empty container for collecting crude oil' },
+
+   -----# Lation Weed #-----
+   ['ls_plain_jane_seed'] = { label = 'Plain Jane Seed', weight = 5, stack = true, close = true },
+   ['ls_plain_jane_bud'] = { label = 'Plain Jane Bud', weight = 5, stack = true, close = false },
+   ['ls_plain_jane_bag'] = { label = 'Plain Jane Bag', weight = 10, stack = true, close = true },
+   ['ls_plain_jane_joint'] = { label = 'Plain Jane Joint', weight = 10, stack = true, close = true },
+   ['ls_banana_kush_seed'] = { label = 'Banana Kush Seed', weight = 5, stack = true, close = true },
+   ['ls_banana_kush_bud'] = { label = 'Banana Kush Bud', weight = 5, stack = true, close = false },
+   ['ls_banana_kush_bag'] = { label = 'Banana Kush Bag', weight = 10, stack = true, close = true },
+   ['ls_banana_kush_joint'] = { label = 'Banana Kush Joint', weight = 10, stack = true, close = true },
+   ['ls_blue_dream_seed'] = { label = 'Blue Dream Seed', weight = 5, stack = true, close = true },
+   ['ls_blue_dream_bud'] = { label = 'Blue Dream Bud', weight = 5, stack = true, close = false },
+   ['ls_blue_dream_bag'] = { label = 'Blue Dream Bag', weight = 10, stack = true, close = true },
+   ['ls_blue_dream_joint'] = { label = 'Blue Dream Joint', weight = 10, stack = true, close = true },
+   ['ls_purple_haze_seed'] = { label = 'Purple Haze Seed', weight = 5, stack = true, close = true },
+   ['ls_purple_haze_bud'] = { label = 'Purple Haze Bud', weight = 5, stack = true, close = false },
+   ['ls_purple_haze_bag'] = { label = 'Purple Haze Bag', weight = 10, stack = true, close = true },
+   ['ls_purple_haze_joint'] = { label = 'Purple Haze Joint', weight = 10, stack = true, close = true },
+   ['ls_orange_crush_seed'] = { label = 'Orange Crush Seed', weight = 5, stack = true, close = true },
+   ['ls_orange_crush_bud'] = { label = 'Orange Crush Bud', weight = 5, stack = true, close = false },
+   ['ls_orange_crush_bag'] = { label = 'Orange Crush Bag', weight = 10, stack = true, close = true },
+   ['ls_orange_crush_joint'] = { label = 'Orange Crush Joint', weight = 10, stack = true, close = true },
+   ['ls_cosmic_kush_seed'] = { label = 'Cosmic Kush Seed', weight = 5, stack = true, close = true },
+   ['ls_cosmic_kush_bud'] = { label = 'Cosmic Kush Bud', weight = 5, stack = true, close = false },
+   ['ls_cosmic_kush_bag'] = { label = 'Cosmic Kush Bag', weight = 10, stack = true, close = true },
+   ['ls_cosmic_kush_joint'] = { label = 'Cosmic Kush Joint', weight = 10, stack = true, close = true },
+   ['ls_rolling_paper'] = { label = 'Rolling Paper', weight = 5, stack = true, close = true },
+   ['ls_empty_baggy'] = { label = 'Empty Baggy', weight = 5, stack = true, close = true },
+   ['ls_access_card'] = { label = 'Access Card', weight = 15, stack = false, close = true },
+   --['ls_watering_can'] = { label = 'Watering Can', weight = 3250, stack = false, close = true },
+   --['ls_fertilizer'] = { label = 'Fertilizer', weight = 1750, stack = false, close = true },
+   --['ls_plant_pot'] = { label = 'Plant Pot', weight = 25, stack = true, close = true },
+   ['ls_shovel'] = { label = 'Shovel', weight = 75, stack = false, close = true },
+   --['ls_shears'] = { label = 'Shears', weight = 10, stack = false, close = true },
+   ['ls_weed_table'] = { label = 'Weed Table', weight = 1000, stack = false, close = true },
+
+   -----# Lation Cocaine #-----
+   ['ls_coke_table'] = { label = 'Coke Table', weight = 1000, stack = false, close = true },
+   ['ls_coca_seed'] = { label = 'Coca Seed', weight = 5, stack = true, close = true },
+   ['ls_coca_leaf'] = { label = 'Coca Leaf', weight = 5, stack = true, close = false },
+   ['ls_coca_ground'] = { label = 'Ground Coca', weight = 20, stack = true, close = false },
+   ['ls_coca_base_unf'] = { label = 'Coca Base (unfinished)', weight = 40, stack = true, close = false },
+   ['ls_coca_base'] = { label = 'Coca Base', weight = 50, stack = true, close = false },
+   ['ls_cocaine_brick'] = { label = 'Cocaine Brick', weight = 100, stack = true, close = true },
+   ['ls_crack_brick'] = { label = 'Crack Brick', weight = 100, stack = true, close = true },
+   ['ls_baking_soda'] = { label = 'Baking Soda', weight = 25, stack = true, close = true },
+   ['ls_gasoline'] = { label = 'Kerosene', weight = 1000, stack = false, close = true },
+   ['ls_shears'] = { label = 'Shears', weight = 10, stack = false, close = true },
+   ['ls_watering_can'] = { label = 'Watering Can', weight = 3250, stack = false, close = true },
+   ['ls_fertilizer'] = { label = 'Fertilizer', weight = 1750, stack = false, close = true },
+   ['ls_plant_pot'] = { label = 'Plant Pot', weight = 25, stack = true, close = true },
+   ['ls_cement'] = { label = 'Cement', weight = 2000, stack = false, close = true },
+   ['ls_empty_baggy'] = { label = 'Empty Baggy', weight = 5, stack = true, close = true },
+   ['ls_cocaine_bag'] = { label = 'Cocaine', weight = 10, stack = true, close = true },
+   ['ls_crack_bag'] = { label = 'Crack', weight = 10, stack = true, close = true },
+
+   -----# Lation Meth #-----
+   ['ls_meth_table'] = { label = 'Meth Table', weight = 1000, stack = false, close = true },
+   ['ls_gas_mask'] = { label = 'Gas Mask', weight = 150, stack = false, close = true },
+   ['ls_pseudoephedrine'] = { label = 'Pseudoephedrine Pills', weight = 50, stack = true, close = true },
+   ['ls_crushed_pseudoephedrine'] = { label = 'Crushed Pseudoephedrine', weight = 25, stack = true, close = false },
+   ['ls_ammonia'] = { label = 'Ammonia', weight = 250, stack = false, close = true },
+   ['ls_iodine'] = { label = 'Iodine', weight = 250, stack = false, close = true },
+   ['ls_acetone'] = { label = 'Acetone', weight = 250, stack = false, close = true },
+   ['ls_liquid_meth'] = { label = 'Liquid Meth', weight = 225, stack = true, close = false },
+   ['ls_hydrochloric_acid'] = { label = 'Hydrochloric Acid', weight = 250, stack = false, close = true },
+   ['ls_meth'] = { label = 'Meth', weight = 50, stack = true, close = true },
+   ['ls_supply_crate'] = { label = 'Supplies', weight = 1000, stack = false, close = true },
+   ['ls_meth_tray'] = { label = 'Meth Tray', weight = 50, stack = true, close = true },
+   ['ls_meth_box'] = { label = 'Meth Box', weight = 50, stack = true, close = true },
+   
+   ----- # Misc Items # -----
+   ----[''] = { label = '', weight = 1, stack = false, close = false },
 
-    ['bandage'] = {
-        label = 'Bandage',
-        weight = 115,
-    },
-
-    ['burger'] = {
-        label = 'Burger',
-        weight = 220,
-        client = {
-            status = { hunger = 200000 },
-            anim = 'eating',
-            prop = 'burger',
-            usetime = 2500,
-            notification = 'You ate a delicious burger'
-        },
-    },
-
-    ['sprunk'] = {
-        label = 'Sprunk',
-        weight = 350,
-        client = {
-            status = { thirst = 200000 },
-            anim = { dict = 'mp_player_intdrink', clip = 'loop_bottle' },
-            prop = { model = `prop_ld_can_01`, pos = vec3(0.01, 0.01, 0.06), rot = vec3(5.0, 5.0, -180.5) },
-            usetime = 2500,
-            notification = 'You quenched your thirst with a sprunk'
-        }
-    },
-
-    ['parachute'] = {
-        label = 'Parachute',
-        weight = 8000,
-        stack = false,
-        client = {
-            anim = { dict = 'clothingshirt', clip = 'try_shirt_positive_d' },
-            usetime = 1500
-        }
-    },
-
-    ['garbage'] = {
-        label = 'Garbage',
-    },
-
-    ['paperbag'] = {
-        label = 'Paper Bag',
-        weight = 1,
-        stack = false,
-        close = false,
-        consume = 0
-    },
-
-    ['panties'] = {
-        label = 'Knickers',
-        weight = 10,
-        consume = 0,
-        client = {
-            status = { thirst = -100000, stress = -25000 },
-            anim = { dict = 'mp_player_intdrink', clip = 'loop_bottle' },
-            prop = { model = `prop_cs_panties_02`, pos = vec3(0.03, 0.0, 0.02), rot = vec3(0.0, -13.5, -1.5) },
-            usetime = 2500,
-        }
-    },
-
-    ['lockpick'] = {
-        label = 'Lockpick',
-        weight = 160,
-    },
-
-    ['phone'] = {
-        label = 'Phone',
-        weight = 190,
-        stack = false,
-        consume = 0,
-        client = {
-            add = function(total)
-                if total > 0 then
-                    pcall(function() return exports.npwd:setPhoneDisabled(false) end)
-                end
-            end,
-
-            remove = function(total)
-                if total < 1 then
-                    pcall(function() return exports.npwd:setPhoneDisabled(true) end)
-                end
-            end
-        }
-    },
-
-    ['mustard'] = {
-        label = 'Mustard',
-        weight = 500,
-        client = {
-            status = { hunger = 25000, thirst = 25000 },
-            anim = { dict = 'mp_player_intdrink', clip = 'loop_bottle' },
-            prop = { model = `prop_food_mustard`, pos = vec3(0.01, 0.0, -0.07), rot = vec3(1.0, 1.0, -1.5) },
-            usetime = 2500,
-            notification = 'You... drank mustard'
-        }
-    },
-
-    ['water'] = {
-        label = 'Water',
-        weight = 500,
-        client = {
-            status = { thirst = 200000 },
-            anim = { dict = 'mp_player_intdrink', clip = 'loop_bottle' },
-            prop = { model = `prop_ld_flow_bottle`, pos = vec3(0.03, 0.03, 0.02), rot = vec3(0.0, 0.0, -1.5) },
-            usetime = 2500,
-            cancel = true,
-            notification = 'You drank some refreshing water'
-        }
-    },
-
-    ['armour'] = {
-        label = 'Bulletproof Vest',
-        weight = 3000,
-        stack = false,
-        client = {
-            anim = { dict = 'clothingshirt', clip = 'try_shirt_positive_d' },
-            usetime = 3500
-        }
-    },
-
-    ['clothing'] = {
-        label = 'Clothing',
-        consume = 0,
-    },
-
-    ['money'] = {
-        label = 'Money',
-    },
-
-    ['black_money'] = {
-        label = 'Dirty Money',
-    },
-
-    ['id_card'] = {
-        label = 'Identification Card',
-    },
-
-    ['driver_license'] = {
-        label = 'Drivers License',
-    },
-
-    ['weaponlicense'] = {
-        label = 'Weapon License',
-    },
-
-    ['lawyerpass'] = {
-        label = 'Lawyer Pass',
-    },
-
-    ['radio'] = {
-        label = 'Radio',
-        weight = 1000,
-        allowArmed = true,
-        consume = 0,
-        client = {
-            event = 'mm_radio:client:use'
-        }
-    },
-
-    ['jammer'] = {
-        label = 'Radio Jammer',
-        weight = 10000,
-        allowArmed = true,
-        client = {
-            event = 'mm_radio:client:usejammer'
-        }
-    },
-
-    ['radiocell'] = {
-        label = 'AAA Cells',
-        weight = 1000,
-        stack = true,
-        allowArmed = true,
-        client = {
-            event = 'mm_radio:client:recharge'
-        }
-    },
-
-    ['advancedlockpick'] = {
-        label = 'Advanced Lockpick',
-        weight = 500,
-    },
-
-    ['screwdriverset'] = {
-        label = 'Screwdriver Set',
-        weight = 500,
-    },
-
-    ['electronickit'] = {
-        label = 'Electronic Kit',
-        weight = 500,
-    },
-
-    ['cleaningkit'] = {
-        label = 'Cleaning Kit',
-        weight = 500,
-    },
-
-    ['repairkit'] = {
-        label = 'Repair Kit',
-        weight = 2500,
-    },
-
-    ['advancedrepairkit'] = {
-        label = 'Advanced Repair Kit',
-        weight = 4000,
-    },
-
-    ['diamond_ring'] = {
-        label = 'Diamond',
-        weight = 1500,
-    },
-
-    ['rolex'] = {
-        label = 'Golden Watch',
-        weight = 1500,
-    },
-
-    ['goldbar'] = {
-        label = 'Gold Bar',
-        weight = 1500,
-    },
-
-    ['goldchain'] = {
-        label = 'Golden Chain',
-        weight = 1500,
-    },
-
-    ['crack_baggy'] = {
-        label = 'Crack Baggy',
-        weight = 100,
-    },
-
-    ['cokebaggy'] = {
-        label = 'Bag of Coke',
-        weight = 100,
-    },
-
-    ['coke_brick'] = {
-        label = 'Coke Brick',
-        weight = 2000,
-    },
-
-    ['coke_small_brick'] = {
-        label = 'Coke Package',
-        weight = 1000,
-    },
-
-    ['xtcbaggy'] = {
-        label = 'Bag of Ecstasy',
-        weight = 100,
-    },
-
-    ['meth'] = {
-        label = 'Methamphetamine',
-        weight = 100,
-    },
-
-    ['oxy'] = {
-        label = 'Oxycodone',
-        weight = 100,
-    },
-
-    ['weed_ak47'] = {
-        label = 'AK47 2g',
-        weight = 200,
-    },
-
-    ['weed_ak47_seed'] = {
-        label = 'AK47 Seed',
-        weight = 1,
-    },
-
-    ['weed_skunk'] = {
-        label = 'Skunk 2g',
-        weight = 200,
-    },
-
-    ['weed_skunk_seed'] = {
-        label = 'Skunk Seed',
-        weight = 1,
-    },
-
-    ['weed_amnesia'] = {
-        label = 'Amnesia 2g',
-        weight = 200,
-    },
-
-    ['weed_amnesia_seed'] = {
-        label = 'Amnesia Seed',
-        weight = 1,
-    },
-
-    ['weed_og-kush'] = {
-        label = 'OGKush 2g',
-        weight = 200,
-    },
-
-    ['weed_og-kush_seed'] = {
-        label = 'OGKush Seed',
-        weight = 1,
-    },
-
-    ['weed_white-widow'] = {
-        label = 'OGKush 2g',
-        weight = 200,
-    },
-
-    ['weed_white-widow_seed'] = {
-        label = 'White Widow Seed',
-        weight = 1,
-    },
-
-    ['weed_purple-haze'] = {
-        label = 'Purple Haze 2g',
-        weight = 200,
-    },
-
-    ['weed_purple-haze_seed'] = {
-        label = 'Purple Haze Seed',
-        weight = 1,
-    },
-
-    ['weed_brick'] = {
-        label = 'Weed Brick',
-        weight = 2000,
-    },
-
-    ['weed_nutrition'] = {
-        label = 'Plant Fertilizer',
-        weight = 2000,
-    },
-
-    ['joint'] = {
-        label = 'Joint',
-        weight = 200,
-    },
-
-    ['rolling_paper'] = {
-        label = 'Rolling Paper',
-        weight = 0,
-    },
-
-    ['empty_weed_bag'] = {
-        label = 'Empty Weed Bag',
-        weight = 0,
-    },
-
-    ['firstaid'] = {
-        label = 'First Aid',
-        weight = 2500,
-    },
-
-    ['ifaks'] = {
-        label = 'Individual First Aid Kit',
-        weight = 2500,
-    },
-
-    ['painkillers'] = {
-        label = 'Painkillers',
-        weight = 400,
-    },
-
-    ['firework1'] = {
-        label = '2Brothers',
-        weight = 1000,
-    },
-
-    ['firework2'] = {
-        label = 'Poppelers',
-        weight = 1000,
-    },
-
-    ['firework3'] = {
-        label = 'WipeOut',
-        weight = 1000,
-    },
-
-    ['firework4'] = {
-        label = 'Weeping Willow',
-        weight = 1000,
-    },
-
-    ['steel'] = {
-        label = 'Steel',
-        weight = 100,
-    },
-
-    ['rubber'] = {
-        label = 'Rubber',
-        weight = 100,
-    },
-
-    ['metalscrap'] = {
-        label = 'Metal Scrap',
-        weight = 100,
-    },
-
-    ['iron'] = {
-        label = 'Iron',
-        weight = 100,
-    },
-
-    ['copper'] = {
-        label = 'Copper',
-        weight = 100,
-    },
-
-    ['aluminum'] = {
-        label = 'Aluminium',
-        weight = 100,
-    },
-
-    ['plastic'] = {
-        label = 'Plastic',
-        weight = 100,
-    },
-
-    ['glass'] = {
-        label = 'Glass',
-        weight = 100,
-    },
-
-    ['gatecrack'] = {
-        label = 'Gatecrack',
-        weight = 1000,
-    },
-
-    ['cryptostick'] = {
-        label = 'Crypto Stick',
-        weight = 100,
-    },
-
-    ['trojan_usb'] = {
-        label = 'Trojan USB',
-        weight = 100,
-    },
-
-    ['toaster'] = {
-        label = 'Toaster',
-        weight = 5000,
-    },
-
-    ['small_tv'] = {
-        label = 'Small TV',
-        weight = 100,
-    },
-
-    ['security_card_01'] = {
-        label = 'Security Card A',
-        weight = 100,
-    },
-
-    ['security_card_02'] = {
-        label = 'Security Card B',
-        weight = 100,
-    },
-
-    ['drill'] = {
-        label = 'Drill',
-        weight = 5000,
-    },
-
-    ['thermite'] = {
-        label = 'Thermite',
-        weight = 1000,
-    },
-
-    ['diving_gear'] = {
-        label = 'Diving Gear',
-        weight = 30000,
-    },
-
-    ['diving_fill'] = {
-        label = 'Diving Tube',
-        weight = 3000,
-    },
-
-    ['antipatharia_coral'] = {
-        label = 'Antipatharia',
-        weight = 1000,
-    },
-
-    ['dendrogyra_coral'] = {
-        label = 'Dendrogyra',
-        weight = 1000,
-    },
-
-    ['jerry_can'] = {
-        label = 'Jerrycan',
-        weight = 3000,
-    },
-
-    ['nitrous'] = {
-        label = 'Nitrous',
-        weight = 1000,
-    },
-
-    ['wine'] = {
-        label = 'Wine',
-        weight = 500,
-    },
-
-    ['grape'] = {
-        label = 'Grape',
-        weight = 10,
-    },
-
-    ['grapejuice'] = {
-        label = 'Grape Juice',
-        weight = 200,
-    },
-
-    ['coffee'] = {
-        label = 'Coffee',
-        weight = 200,
-    },
-
-    ['vodka'] = {
-        label = 'Vodka',
-        weight = 500,
-    },
-
-    ['whiskey'] = {
-        label = 'Whiskey',
-        weight = 200,
-    },
-
-    ['beer'] = {
-        label = 'Beer',
-        weight = 200,
-    },
-
-    ['sandwich'] = {
-        label = 'Sandwich',
-        weight = 200,
-    },
-
-    ['walking_stick'] = {
-        label = 'Walking Stick',
-        weight = 1000,
-    },
-
-    ['lighter'] = {
-        label = 'Lighter',
-        weight = 200,
-    },
-
-    ['binoculars'] = {
-        label = 'Binoculars',
-        weight = 800,
-    },
-
-    ['stickynote'] = {
-        label = 'Sticky Note',
-        weight = 0,
-    },
-
-    ['empty_evidence_bag'] = {
-        label = 'Empty Evidence Bag',
-        weight = 200,
-    },
-
-    ['filled_evidence_bag'] = {
-        label = 'Filled Evidence Bag',
-        weight = 200,
-    },
-
-    ['harness'] = {
-        label = 'Harness',
-        weight = 200,
-    },
-
-    ['handcuffs'] = {
-        label = 'Handcuffs',
-        weight = 200,
-    },
 }
+

@@ -346,6 +346,176 @@ local function Item(name, cb)
 	end
 end
 
+Item('box_38', function(event, item, inventory, data, slot)
+	if event == 'usedItem' then
+    	Inventory.AddItem(inventory, 'ammo-38', 120)
+	end
+end)
+
+Item('box_44', function(event, item, inventory, data, slot)
+	if event == 'usedItem' then
+    	Inventory.AddItem(inventory, 'ammo-44', 60)
+	end
+end)
+
+Item('box_45', function(event, item, inventory, data, slot)
+	if event == 'usedItem' then
+    	Inventory.AddItem(inventory, 'ammo-45', 60)
+	end
+end)
+
+Item('box_50', function(event, item, inventory, data, slot)
+	if event == 'usedItem' then
+    	Inventory.AddItem(inventory, 'ammo-50', 30)
+	end
+end)
+
+Item('box_9', function(event, item, inventory, data, slot)
+	if event == 'usedItem' then
+    	Inventory.AddItem(inventory, 'ammo-9', 120)
+	end
+end)
+
+Item('box_50heavy', function(event, item, inventory, data, slot)
+	if event == 'usedItem' then
+    	Inventory.AddItem(inventory, 'ammo-heavysniper', 120)
+	end
+end)
+
+Item('box_556', function(event, item, inventory, data, slot)
+	if event == 'usedItem' then
+    	Inventory.AddItem(inventory, 'ammo-rifle', 60)
+	end
+end)
+
+Item('box_762', function(event, item, inventory, data, slot)
+	if event == 'usedItem' then
+    	Inventory.AddItem(inventory, 'ammo-rifle2', 30)
+	end
+end)
+
+Item('box_shotgun', function(event, item, inventory, data, slot)
+	if event == 'usedItem' then
+    	Inventory.AddItem(inventory, 'ammo-shotgun', 60)
+	end
+end)
+
+Item('box_50snp', function(event, item, inventory, data, slot)
+	if event == 'usedItem' then
+    	Inventory.AddItem(inventory, 'ammo-sniper', 30)
+	end
+end)
+
+-- Beer Cases
+Item('box_golden_harvest', function(event, item, inventory, data, slot)
+	if event == 'usedItem' then
+    	Inventory.AddItem(inventory, 'golden_harvest', 12)
+	end
+end)
+
+Item('box_hop_bomber', function(event, item, inventory, data, slot)
+	if event == 'usedItem' then
+    	Inventory.AddItem(inventory, 'hop_bomber', 12)
+	end
+end)
+
+Item('box_nightshade', function(event, item, inventory, data, slot)
+	if event == 'usedItem' then
+    	Inventory.AddItem(inventory, 'nightshade', 12)
+	end
+end)
+
+Item('box_golden_foam', function(event, item, inventory, data, slot)
+	if event == 'usedItem' then
+    	Inventory.AddItem(inventory, 'golden_foam', 12)
+	end
+end)
+
+Item('box_north_star', function(event, item, inventory, data, slot)
+	if event == 'usedItem' then
+    	Inventory.AddItem(inventory, 'north_star', 12)
+	end
+end)
+
+Item('box_iron_horse', function(event, item, inventory, data, slot)
+	if event == 'usedItem' then
+    	Inventory.AddItem(inventory, 'iron_horse', 12)
+	end
+end)
+
+Item('box_black_oak', function(event, item, inventory, data, slot)
+	if event == 'usedItem' then
+    	Inventory.AddItem(inventory, 'black_oak', 12)
+	end
+end)
+
+Item('box_dragons_tooth', function(event, item, inventory, data, slot)
+	if event == 'usedItem' then
+    	Inventory.AddItem(inventory, 'dragons_tooth', 12)
+	end
+end)
+
+-- Distillery Cases
+Item('box_jim_jaxson', function(event, item, inventory, data, slot)
+	if event == 'usedItem' then
+    	Inventory.AddItem(inventory, 'jim_jaxson_bottle', 6)
+	end
+end)
+
+Item('box_highland_peak', function(event, item, inventory, data, slot)
+	if event == 'usedItem' then
+    	Inventory.AddItem(inventory, 'highland_peak_bottle', 6)
+	end
+end)
+
+Item('box_mariner_mark', function(event, item, inventory, data, slot)
+	if event == 'usedItem' then
+    	Inventory.AddItem(inventory, 'mariner_mark_bottle', 6)
+	end
+end)
+
+Item('box_oldcoast_darkrum', function(event, item, inventory, data, slot)
+	if event == 'usedItem' then
+    	Inventory.AddItem(inventory, 'oldcoast_darkrum_bottle', 6)
+	end
+end)
+
+Item('box_polar_peak', function(event, item, inventory, data, slot)
+	if event == 'usedItem' then
+    	Inventory.AddItem(inventory, 'polar_peak_bottle', 6)
+	end
+end)
+
+Item('box_grain_harvest', function(event, item, inventory, data, slot)
+	if event == 'usedItem' then
+    	Inventory.AddItem(inventory, 'grain_harvest_bottle', 6)
+	end
+end)
+
+Item('box_distillers_pride', function(event, item, inventory, data, slot)
+	if event == 'usedItem' then
+    	Inventory.AddItem(inventory, 'distillers_pride_bottle', 6)
+	end
+end)
+
+Item('box_agave_peak', function(event, item, inventory, data, slot)
+	if event == 'usedItem' then
+    	Inventory.AddItem(inventory, 'agave_peak_bottle', 6)
+	end
+end)
+
+Item('box_cruz_anueja', function(event, item, inventory, data, slot)
+	if event == 'usedItem' then
+    	Inventory.AddItem(inventory, 'cruz_anueja_bottle', 6)
+	end
+end)
+
+Item('box_grand_reserve', function(event, item, inventory, data, slot)
+	if event == 'usedItem' then
+    	Inventory.AddItem(inventory, 'grand_reserve_bottle', 6)
+	end
+end)
+
 -----------------------------------------------------------------------------------------------
 -- Serverside item functions
 -----------------------------------------------------------------------------------------------

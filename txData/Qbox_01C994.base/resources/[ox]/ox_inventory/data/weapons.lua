@@ -716,6 +716,20 @@ return {
 			weight = 600,
 			throwable = true,
 		},
+
+		['WEAPON_HUNTINGRIFLE'] = {
+		    label = 'Hunting Rifle',
+		    weight = 5000,
+		    durability = 0.5,
+		    ammoname = 'gg_hunting_rifleammo'
+	    },
+	
+	    ['WEAPON_CROSSBOW'] = {
+		    label = 'Hunting Crossbow',
+		    weight = 5000,
+		    durability = 0.5,
+		    ammoname = 'gg_hunting_arrowammo'
+	    },
 	},
 
 	Components = {
@@ -1876,5 +1890,15 @@ return {
 			label = 'EMP round',
 			weight = 400,
 		},
+
+		['gg_hunting_arrowammo'] = {
+		    label = 'Arrow Ammo',
+		    weight = 20,
+	    },
+	
+	    ['gg_hunting_rifleammo'] = {
+		   label = 'Hunting Rifle Ammo',
+		   weight = 20,
+	    },
 	}
 }

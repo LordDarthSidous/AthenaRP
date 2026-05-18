@@ -1,5 +1,5 @@
 return {
-	General = {
+	--[[General = {
 		name = 'Shop',
 		blip = {
 			id = 59, colour = 69, scale = 0.8
@@ -30,7 +30,7 @@ return {
 			{ loc = vec3(2557.19, 381.4, 108.62), length = 0.6, width = 0.5, heading = 0.0, minZ = 108.62, maxZ = 109.02, distance = 1.5 },
 			{ loc = vec3(373.13, 326.29, 103.57), length = 0.6, width = 0.5, heading = 345.0, minZ = 103.57, maxZ = 103.97, distance = 1.5 },
 		}
-	},
+	},--]]
 
 	Liquor = {
 		name = 'Liquor Store',
