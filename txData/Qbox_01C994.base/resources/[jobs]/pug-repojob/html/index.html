@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Tow Remote</title>
+  </head>
+  <body>
+    <div id="remote" class="remote hidden" aria-hidden="true">
+      <div class="remote__header">
+        <div class="remote__screen">
+          <div class="remote__screenRow">
+            <div id="remoteTitle" class="remote__title">Tow</div>
+
+            <button id="moveBtn" class="mini-btn" type="button" title="Move / Resize">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2l3 3h-2v4h-2V5H9l3-3zm0 20l-3-3h2v-4h2v4h2l-3 3zM2 12l3-3v2h4v2H5v2l-3-3zm20 0l-3 3v-2h-4v-2h4V9l3 3z"/>
+              </svg>
+            </button>
+          </div>
+
+          <div class="remote__subtitle">REMOTE</div>
+        </div>
+      </div>
+
+      <div class="remote__fakeRow">
+        <button id="powerBtn" class="fake-btn" type="button" title="Power">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M11 2h2v10h-2V2zm6.36 3.64l1.41 1.41A9 9 0 1112 3v2a7 7 0 106.36 0z"/>
+          </svg>
+        </button>
+
+        <button id="opacityBtn" class="fake-btn" type="button" title="Opacity">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 5c4.5 0 8.3 2.9 10 7-1.7 4.1-5.5 7-10 7S3.7 16.1 2 12c1.7-4.1 5.5-7 10-7zm0 3a4 4 0 100 8 4 4 0 000-8zm0 2.2a1.8 1.8 0 110 3.6 1.8 1.8 0 010-3.6z"/>
+          </svg>
+        </button>
+      </div>
+
+      <div id="editHint" class="remote__hint hidden">
+        <div class="remote__hintTitle">Edit mode</div>
+        <div class="remote__hintBody">Drag to move • Drag corner to resize • Click the arrows again to save</div>
+      </div>
+
+      <div id="remoteButtons" class="remote__buttons"></div>
+      <button id="centerBtn" class="mini-btn remote__centerBtn" type="button" title="Center Remote">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M11 2h2v3.06A7.002 7.002 0 0118.94 11H22v2h-3.06A7.002 7.002 0 0113 18.94V22h-2v-3.06A7.002 7.002 0 015.06 13H2v-2h3.06A7.002 7.002 0 0111 5.06V2zm1 5a5 5 0 100 10 5 5 0 000-10zm0 2.2A2.8 2.8 0 1112 14.8 2.8 2.8 0 0112 9.2z"/>
+        </svg>
+        <span>Center</span>
+      </button>
+
+      <div id="resizeHandle" class="remote__resize hidden" title="Resize"></div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
